@@ -1,0 +1,22 @@
+header {
+    height: 60px;
+}
+
+.header {
+    z-index: 5;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+}
+
+.navbar-header {
+    height: 60px;
+}
+  
+.navbar-header .logo_icon img {
+    width: 130px;
+}
+  
+.navbar-header .account-link a {
+    text-align: center;
+}
