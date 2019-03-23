@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ErrorHandlerService } from 'src/core/error-handler-service';
 import '../../recourse/icons/font/flaticon.css'
 import Layout from 'src/views/layout/layout'
+import RemainTime from './remain-time/RemainTime'
 import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './home.scss';
 
@@ -21,12 +22,13 @@ export default class Home extends Component<Props, State> {
         skills: [],
         title: '',
         winner: ''
-      }
+      },
     }
   }
 
   componentWillMount() {
     this.getProject();
+    this.state.project.deadline = 1553348628
   }
 
   componentDidMount() {
@@ -37,7 +39,7 @@ export default class Home extends Component<Props, State> {
     axios.get(`http://localhost:8080/projects/` + this.state.projectId)
       .then( (res: any) => {
         this.setState({
-          project: res.data
+          project: res.data,
         });
       })
       .catch( (err: any) => {
@@ -56,15 +58,7 @@ export default class Home extends Component<Props, State> {
                 <div className="row project-name">
                     <h2>{this.state.project.title}</h2>
                 </div>
-                <div className="row inform-data">
-                    <div className="col-1">
-                        <i className="flaticon-deadline"></i>
-                    </div>
-                    <div className="col-11 time-data">
-                        <label className="inform-label">زمان باقی‌‌مانده:&nbsp;</label>
-                        <p className="text-content">{this.state.project.deadline}</p>
-                    </div>
-                </div>
+                <RemainTime deadline={this.state.project.deadline} />
                 <div className="row inform-data budget">
                     <div className="col-1">
                         <i className="flaticon-money-bag"></i>
@@ -106,7 +100,7 @@ interface Project {
 }
 interface State {
   project: Project,
-  projectId: string
+  projectId: string,
 }
 interface Skill {
   name: string;
