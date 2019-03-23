@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ErrorHandlerService } from 'src/core/error-handler-service';
 import '../../recourse/icons/font/flaticon.css'
 import Layout from 'src/views/layout/layout'
-import RemainTime from './remain-time/RemainTime'
+import RemainTime, { isTimeRemain } from './remain-time/RemainTime'
 import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './home.scss';
 
@@ -21,26 +21,27 @@ export default class Home extends Component<Props, State> {
         imageUrl: '',
         skills: [],
         title: '',
-        winner: ''
+        winnerId: '',
+        winnerName: ''
       },
+      isFinished: true
     }
+    this.getProject();
   }
 
   componentWillMount() {
-    this.getProject();
-    this.state.project.deadline = 1553348628
+    setInterval(() => this.setState({
+        isFinished: !isTimeRemain(this.state.project.deadline)
+      }), 1000);
   }
 
-  componentDidMount() {
-
-  }
-
-  getProject = () => {
-    axios.get(`http://localhost:8080/projects/` + this.state.projectId)
+  getProject = async () => {
+     await axios.get(`http://localhost:8080/projects/` + this.state.projectId)
       .then( (res: any) => {
         this.setState({
           project: res.data,
         });
+        //TODO: remove this line
       })
       .catch( (err: any) => {
         ErrorHandlerService(err);
@@ -48,6 +49,20 @@ export default class Home extends Component<Props, State> {
   }
 
   showProjectInformation = () => {
+    let winner; 
+    if(this.state.isFinished && this.state.project.winnerName != '') {
+      winner =  (<div className="row success inform-data">
+                  <div className="col-1">
+                      <i className="flaticon-check-mark"></i>
+                  </div>
+                  <div className="col-11 budget-text">
+                      <label className="inform-label">برنده:&nbsp;</label>
+                      <p className="text-content">{this.state.project.winnerName}</p>
+                  </div>
+                </div>
+              );
+            }
+    
     return (
       <div className="container content">
         <div className="row information">
@@ -58,7 +73,7 @@ export default class Home extends Component<Props, State> {
                 <div className="row project-name">
                     <h2>{this.state.project.title}</h2>
                 </div>
-                <RemainTime deadline={this.state.project.deadline} />
+                <RemainTime deadline={this.state.project.deadline} isFinished={this.state.isFinished} />
                 <div className="row inform-data budget">
                     <div className="col-1">
                         <i className="flaticon-money-bag"></i>
@@ -68,6 +83,7 @@ export default class Home extends Component<Props, State> {
                         <p className="text-content">{this.state.project.budget} تومان</p>
                     </div>
                 </div>
+                {winner}
                 <div className="details">
                     <h5>توضیحات</h5>
                     <p className="justify">&nbsp;&nbsp;&nbsp;&nbsp;{this.state.project.description}</p>
@@ -96,11 +112,13 @@ interface Project {
   imageUrl: string;
   skills: Skill[];
   title: string;
-  winner: string;
+  winnerId: string;
+  winnerName: string;
 }
 interface State {
   project: Project,
   projectId: string,
+  isFinished: boolean
 }
 interface Skill {
   name: string;

@@ -7,13 +7,13 @@ import './layout.scss'
 export default class Layout extends Component<Props, State> {
   render() {
     return (
-      <body>
+      <div>
         <Header />
         <Main>
           {this.props.children}
         </Main>
         <Footer />
-      </body>
+      </div>
     );
   }
 }

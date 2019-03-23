@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { string } from 'prop-types';
 
+//FIXME: on start of a finished project
+
 export default class RemainTime extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -10,15 +12,10 @@ export default class RemainTime extends Component<Props, State> {
         }
       }
 
-    componentWillMount() {
-        setInterval(() => this.setState({
-            isFinished: !isTimeRemain(this.state.deadline)
-          }), 1000);
-      }
-
-    componentWillReceiveProps(NewProps: Props) {
+    componentWillReceiveProps(newProps: Props) {
         this.setState({
-            isFinished: !isTimeRemain(NewProps.deadline)
+            deadline: newProps.deadline,
+            isFinished: newProps.isFinished
         });
     }
 
@@ -49,12 +46,13 @@ export default class RemainTime extends Component<Props, State> {
         }
         return (
             time
+            
         );
     }
 
     remainTimeText = () => {
         if(!this.state.isFinished) {
-            var delta = Math.abs(this.state.deadline - (Date.now() / 1000));
+            var delta = Math.abs(this.state.deadline - Date.now()) / 1000;
             var days = Math.floor(delta / 86400);
             delta -= days * 86400;
             var hours = Math.floor(delta / 3600) % 24;
@@ -87,16 +85,16 @@ export default class RemainTime extends Component<Props, State> {
 
 
 export const isTimeRemain = (time: number) => {
-    return time - Date.now()/1000 > 0;
+    console.log(time);
+    console.log(Date.now());
+    return time - Date.now() > 0;
   }
-
-
-  
 
 interface State {
     deadline: number,
     isFinished: boolean
 }
 interface Props {
-    deadline: number
+    deadline: number,
+    isFinished: boolean
 }
