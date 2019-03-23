@@ -10,14 +10,14 @@ export default class Header extends Component<Props, State> {
             <div className="header">
                 <div className="container">
                     <div className="row navbar-header align-items-center">
-                        <div className="col-1 offset-8">
+                        <div className="col-1">
                             <span className="logo_icon">
                                 <a>
                                     <img src={JobunjaLogo} alt="logo" />
                                 </a>
                             </span>
                         </div>
-                        <div className="col-2 account-link">
+                        <div className="col-2 offset-8 account-link">
                             <span>
                                 <a className="profile-link" href="profile.html">حساب کاربری</a>
                             </span>

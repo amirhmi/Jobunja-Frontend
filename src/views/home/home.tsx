@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { ErrorHandlerService } from 'src/core/error-handler-service';
+import '../../recourse/icons/font/flaticon.css'
+import Layout from 'src/views/layout/layout'
+import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './home.scss';
-import Header from 'src/views/layout/header/header'
-import Footer from 'src/views/layout/footer/footer'
-import Main from 'src/views/layout/main/main'
-
 
 export default class Home extends Component<Props, State> {
   
   constructor(props: Props) {
     super(props);
     this.state = {
-      projectId: "20955d46-0aac-4a6a-b546-d1581026663f",
+      projectId: "a1f824a0-d650-483a-bbd1-91c4145e3f9a",
+      project: {
+        budget: 0,
+        deadline: 0,
+        description: '',
+        id: '',
+        imageUrl: '',
+        skills: [],
+        title: '',
+        winner: ''
+      }
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getProject();
+  }
+
+  componentDidMount() {
+
   }
 
   getProject = () => {
@@ -25,16 +39,56 @@ export default class Home extends Component<Props, State> {
         this.setState({
           project: res.data
         });
+      })
+      .catch( (err: any) => {
+        ErrorHandlerService(err);
       });
+  }
+
+  showProjectInformation = () => {
+    return (
+      <div className="container content">
+        <div className="row information">
+            <div className="col-3 project-img">
+                <img src={projectImg} alt="logo" />
+            </div>
+            <div className="col-8 data">
+                <div className="row project-name">
+                    <h2>{this.state.project.title}</h2>
+                </div>
+                <div className="row inform-data">
+                    <div className="col-1">
+                        <i className="flaticon-deadline"></i>
+                    </div>
+                    <div className="col-11 time-data">
+                        <label className="inform-label">زمان باقی‌‌مانده:&nbsp;</label>
+                        <p className="text-content">{this.state.project.deadline}</p>
+                    </div>
+                </div>
+                <div className="row inform-data budget">
+                    <div className="col-1">
+                        <i className="flaticon-money-bag"></i>
+                    </div>
+                    <div className="col-11 budget-text">
+                        <label className="inform-label">بودجه:&nbsp;</label>
+                        <p className="text-content">{this.state.project.budget} تومان</p>
+                    </div>
+                </div>
+                <div className="details">
+                    <h5>توضیحات</h5>
+                    <p className="justify">&nbsp;&nbsp;&nbsp;&nbsp;{this.state.project.description}</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    )
   }
 
   render() {
     return (
-      <body>
-        <Header />
-        <Main />
-        <Footer />
-      </body>
+      <Layout>
+          {this.showProjectInformation()}
+      </Layout>
     );
   }
   
@@ -51,7 +105,7 @@ interface Project {
   winner: string;
 }
 interface State {
-  project?: Project,
+  project: Project,
   projectId: string
 }
 interface Skill {
