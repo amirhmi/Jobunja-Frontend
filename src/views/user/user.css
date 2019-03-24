@@ -1,1 +1,129 @@
-/* No CSS *//*# sourceMappingURL=user.css.map */
+.colored-row {
+  height: 150px;
+}
+
+.profile_pic img {
+  width: 210px;
+  margin-top: -50%;
+  border: 10px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10%;
+  -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+}
+
+.user {
+  margin-right: 35px;
+}
+
+.user .name h2 {
+  font-family: IRANSansBold;
+  margin-top: 10%;
+}
+
+.user .username p {
+  color: #7d7d7d;
+}
+
+.content p {
+  margin-top: 3%;
+  text-align: justify;
+  text-justify: inter-word;
+  color: #6b6b6b;
+  line-height: 200%;
+}
+
+.skill.endorsable:hover {
+  direction: ltr;
+}
+
+.skill.endorsable:hover .skill-val {
+  background-color: limegreen;
+}
+
+.skill.endorsable:hover .skill-val span {
+  display: none;
+}
+
+.skill.endorsable:hover .skill-val:after {
+  background-color: limegreen;
+  color: white;
+  width: 100%;
+  content: '+';
+}
+
+.skill.removable:hover {
+  direction: ltr;
+}
+
+.skill.removable:hover .skill-val {
+  background-color: #dc2f2f;
+}
+
+.skill.removable:hover .skill-val span {
+  display: none;
+}
+
+.skill.removable:hover .skill-val:after {
+  background-color: #dc2f2f;
+  color: white;
+  content: '-';
+}
+
+.skill.endorsed .skill-val {
+  background-color: limegreen;
+  color: white;
+}
+
+.skill-label {
+  margin-bottom: 0px;
+  margin-top: 1.4%;
+}
+
+.add-skill-div {
+  -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+  border-radius: 5%;
+  background-color: #fafafa;
+  margin-right: 3%;
+  padding: 7px;
+  line-height: 250%;
+  margin-bottom: 10px;
+}
+
+.add-skill-form .add-skill-input {
+  background-color: whitesmoke;
+  border: 1px solid #eeeeee;
+  width: 200px;
+  padding: 5px;
+}
+
+.add-skill-form button {
+  background-color: #0099a5;
+  color: #ffffff;
+  border-radius: 5%;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+}
+
+.trapezoid {
+  border-bottom: 30px solid rgba(100, 212, 223, 0.7);
+  border-left: 20px solid transparent;
+  height: 0;
+  width: 125px;
+  margin-top: -135px;
+  margin-right: -45px;
+}
+
+.trapezoid-wide {
+  border-bottom: 30px solid rgba(107, 201, 206, 0.9);
+  border-left: 20px solid transparent;
+  height: 0;
+  width: 105px;
+  margin-top: -30px;
+  margin-right: -35px;
+}
+/*# sourceMappingURL=user.css.map */
