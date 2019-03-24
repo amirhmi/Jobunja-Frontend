@@ -4,14 +4,18 @@ import { ErrorHandlerService } from 'src/core/error-handler-service';
 import Layout from '../layout/layout';
 import './home.scss'
 
+//TODO: user and project links
+
 export default class Header extends Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
         this.state = {
-            users: []
+            users: [],
+            projects: []
         }
         this.getUsers();
+        this.getProjects();
       }
 
     getUsers = async () => {
@@ -19,6 +23,18 @@ export default class Header extends Component<Props, State> {
          .then( (res: any) => {
            this.setState({
              users: res.data,
+           });
+         })
+         .catch( (err: any) => {
+           ErrorHandlerService(err);
+         });
+     }
+
+     getProjects = async () => {
+        await axios.get(`http://localhost:8080/projects`)
+         .then( (res: any) => {
+           this.setState({
+             projects: res.data,
            });
          })
          .catch( (err: any) => {
@@ -42,7 +58,9 @@ export default class Header extends Component<Props, State> {
             </div>
         );
     }
-    handleSubmitOnProject = (event: any) => {}
+    handleSubmitOnProject = (event: any) => {
+        event.preventDefault();
+    }
     handleChangeOnProject = (event: any) => {}
 
     showUsers = () => {
@@ -67,25 +85,72 @@ export default class Header extends Component<Props, State> {
         return '';
     }
 
+    showProjects = () => {
+        if(this.state.projects.length > 0) {
+            var projectElements = this.state.projects.map(function(project) {
+                let skillElements = project.skills.map(function(skill) {
+                    return (
+                        <div className="project-skill">
+                            {skill.name}
+                        </div>
+                    );
+                });
+                return (
+                    <div className="row project-item">
+                        <div className="col-3 project-img">
+                            <img src={project.imageUrl} />
+                        </div>
+                        <div className="col-9 project-inf">
+                            <div className="row">
+                                <div className="col-7 title">
+                                    {project.title}
+                                </div>
+                                <div className="col-3 offset-2">
+                                    زمان باقی‌مانده: ۱۱
+                                </div>
+                            </div>
+                            <div className="row description">
+                                {project.description}
+                            </div>
+                            <div className="row budget">
+                                بودجه: {project.budget} تومان
+                            </div>
+                            <div className="row skills">
+                                <label>
+                                    مهارت‌ها:
+                                </label>
+                                {skillElements}
+                            </div>
+                        </div>
+                    </div>
+                )
+            });
+        return (
+            projectElements
+        );
+        }
+        return '';
+    }
+
 
   render() {
     return (
         <Layout>
             <div className="container content">
-            <div className="row home-title">جاب‌اونجا خوب است!</div>
-            <div className="row home-paragraph">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در</div>
-            {this.searchProject()}
-            <div className="row main-content">
-                <div className="col-3 users">
-                    <div className="row">
-                        <input type="text" placeholder="جستجو نام کاربر" />
+                <div className="row home-title">جاب‌اونجا خوب است!</div>
+                <div className="row home-paragraph">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در</div>
+                {this.searchProject()}
+                <div className="row main-content">
+                    <div className="col-3 users">
+                        <div className="row">
+                            <input type="text" placeholder="جستجو نام کاربر" />
+                        </div>
+                        {this.showUsers()}
                     </div>
-                    {this.showUsers()}
+                    <div className="col-9 projects">
+                        {this.showProjects()}
+                    </div>
                 </div>
-                <div className="col-9 projects">
-
-                </div>
-            </div>
             </div>
         </Layout>
     );
@@ -93,6 +158,7 @@ export default class Header extends Component<Props, State> {
 }
 
 interface State {
+    projects: IProject[],
     users: IUser[]
 }
 interface Props {}
@@ -107,7 +173,19 @@ interface IUser {
     skills: Skill[],
     bio: string,
 }
+interface IProject {
+    budget: number;
+    deadline: number;
+    description: string;
+    id: string
+    imageUrl: string;
+    skills: Skill[];
+    title: string;
+    winnerId: string;
+    winnerName: string;
+    alreadyBid: boolean;
+  }
 interface Skill {
     name: string;
     point: number;
-  }
+}

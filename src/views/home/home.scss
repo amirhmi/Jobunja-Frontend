@@ -130,3 +130,59 @@
         padding-right: 15px;
     }
 }
+
+.project-item {
+    background-color: white;
+    padding: 15px 0px;
+    margin-bottom: 15px;
+    max-height: 154px;
+
+    .title {
+        padding: 0px;
+        font-family: IransansBold;
+        font-size: 19px;
+    }
+
+    .description {
+        font-size: 13px;
+        opacity: 0.8;
+        margin-left: 48px;
+        margin-top: 10px;
+    }
+
+    .budget {
+        color: rgb(0,133,141);
+        font-size: 13px;
+        font-weight: bolder;
+        margin-top: 8px;
+    }
+
+    .skills {
+        font-size: 12px;
+        opacity: 0.5;
+        margin-top: 5px;
+    }
+}
+
+.project-img img{
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.skills label {
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.project-skill {
+    background-color: rgb(249, 249, 249);
+    font-family: IransansBold;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    margin-right: 6px;
+    border-radius: 4px;
+    direction: ltr;
+    padding: 2px 4px;
+}
