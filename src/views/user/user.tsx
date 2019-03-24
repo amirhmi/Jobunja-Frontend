@@ -15,7 +15,6 @@ export default class User extends Component<Props, State> {
     super(props);
     this.state = {
       userId: "1",
-      isMyself: false,
       user: {
         id: '',
         first_name: '',
@@ -65,6 +64,7 @@ export default class User extends Component<Props, State> {
       ErrorHandlerService(err);
     })
   }
+  isMyself = () => { return this.state.userId == this.state.loginUserId}
   showUserInformation= () => {
     return (
       <div className="row">
@@ -96,7 +96,7 @@ export default class User extends Component<Props, State> {
     )
   }
   showAddSkill = () => {
-    if (!this.state.isMyself)
+    if (!this.isMyself())
       return;
     else
       return(
@@ -118,22 +118,6 @@ export default class User extends Component<Props, State> {
         </div>
       )
   }
-  componentWillMount () {
-    //TODO: using callback for set state
-    //if (this.state.userId == this.state.loginUserId)
-    //Alternative:
-    if (this.state.userId == '1')
-      this.setState ({
-        isMyself: true
-      })
-    else
-      this.setState ({
-        isMyself: false
-      })
-
-      console.log(this.state.userId);
-      console.log(this.state.loginUserId);
-  }
 
   render() {
     return (
@@ -152,7 +136,6 @@ interface Props {
 }
 interface State {
   userId: string,
-  isMyself: boolean,
   user: UserObject
   validSkills: string[]
   loginUserId: string
