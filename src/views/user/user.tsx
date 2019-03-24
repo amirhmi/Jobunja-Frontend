@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { ErrorHandlerService } from 'src/core/error-handler-service';
 import Layout from 'src/views/layout/layout'
-import NeededSkill from 'src/views/home/skills/skills'
+import NeededSkill from 'src/views/project/skills/skills'
 import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './user.scss';
 
@@ -25,19 +25,12 @@ export default class User extends Component<Props, State> {
         skills: [],
         bio: '',
       },
-      validSkills: []
+      validSkills: [],
+      loginUserId: '',
     }
-    console.log('hello');
     this.getUser();
+    this.getLoginUserId();
     this.getValidSkills();
-    if (this.state.userId === "1")
-      this.setState ({
-        isMyself: true
-      })
-    else
-      this.setState ({
-        isMyself: false
-      })
   }
   getUser = async () => {
     await axios.get(`http://localhost:8080/users/` + this.state.userId)
@@ -51,10 +44,21 @@ export default class User extends Component<Props, State> {
     });
   }
   getValidSkills = async () => {
-    await axios.get('https://localhost:8080/skills')
+    await axios.get('http://localhost:8080/skills')
     .then( (res: any) => {
       this.setState({
         validSkills: res.data,
+      })
+    })
+    .catch( (err: any) => {
+      ErrorHandlerService(err);
+    })
+  }
+  getLoginUserId = async () => {
+    await axios.get('http://localhost:8080/users/myid')
+    .then( (res: any) => {
+      this.setState({
+        loginUserId: res.data,
       })
     })
     .catch( (err: any) => {
@@ -92,25 +96,45 @@ export default class User extends Component<Props, State> {
     )
   }
   showAddSkill = () => {
-    return(
-      <div className="row">
-        <h4 className="skill-label">مهارت ها:</h4>
-        <div className="add-skill-div col-auto">
-          <form className="add-skill-form coll-auto">
-            <select className="add-skill-input" name="skill">
-              <option hidden>--انتخاب مهارت--</option>
-              {
-                this.state.validSkills.map((item, index) => {
-                  return (<option value={item}>{item}</option>)
-                })
-              }
-            </select>
-            <button type="submit">افزودن مهارت</button>
-          </form>
+    if (!this.state.isMyself)
+      return;
+    else
+      return(
+        <div className="row">
+          <h4 className="skill-label">مهارت ها:</h4>
+          <div className="add-skill-div col-auto">
+            <form className="add-skill-form coll-auto">
+              <select className="add-skill-input" name="skill">
+                <option hidden>--انتخاب مهارت--</option>
+                {
+                  this.state.validSkills.map((item, index) => {
+                    return (<option key={index} value={item}>{item}</option>)
+                  })
+                }
+              </select>
+              <button type="submit">افزودن مهارت</button>
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      )
   }
+  componentWillMount () {
+    //TODO: using callback for set state
+    //if (this.state.userId == this.state.loginUserId)
+    //Alternative:
+    if (this.state.userId == '1')
+      this.setState ({
+        isMyself: true
+      })
+    else
+      this.setState ({
+        isMyself: false
+      })
+
+      console.log(this.state.userId);
+      console.log(this.state.loginUserId);
+  }
+
   render() {
     return (
       <Layout>
@@ -131,6 +155,7 @@ interface State {
   isMyself: boolean,
   user: UserObject
   validSkills: string[]
+  loginUserId: string
 }
 interface UserObject {
   id: string,
