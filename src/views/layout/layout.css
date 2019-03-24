@@ -5,7 +5,7 @@
   margin: 0px;
 }
 
-body {
+#root {
   background-color: whitesmoke;
 }
 
@@ -49,11 +49,11 @@ p.text-content {
 }
 
 .success {
-  color: green;
+  color: green !important;
 }
 
 .danger {
-  color: #df4444;
+  color: #df4444 !important;
 }
 
 .pointer {

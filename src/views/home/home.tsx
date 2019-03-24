@@ -23,10 +23,11 @@ export default class Home extends Component<Props, State> {
         skills: [],
         title: '',
         winnerId: '',
-        winnerName: ''
+        winnerName: '',
+        alreadyBid: false
       },
       isFinished: true,
-      bidAmount: '0'
+      bidAmount: 0
     }
     this.getProject();
   }
@@ -107,18 +108,29 @@ export default class Home extends Component<Props, State> {
   }
 
   handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    this.setState({bidAmount: event.currentTarget.value});
+    this.setState({bidAmount: parseInt(event.currentTarget.value)});
   }
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const params = {
+      bidAmount: this.state.bidAmount
+    };
 
-    
-    axios.post("http://localhost:8080/projects/" + this.state.projectId + "/bid", {
-        bidAmount: this.state.bidAmount
+    axios({
+      method: 'post',
+      url: "http://localhost:8080/projects/" + this.state.projectId + "/bid",
+      params: params,
+      headers: {
+      'content-type': 'multipart/form-data',
+      },
     })
-    .then(function(response) {
-        console.log(response);
+    .then((response) => {
+        let newProject = this.state.project;
+        newProject.alreadyBid = true;
+        this.setState({
+          project: newProject
+        })
     }) .catch(function (error) {
         ErrorHandlerService(error);
     });
@@ -126,7 +138,18 @@ export default class Home extends Component<Props, State> {
 
   showBidForm() {
     let content;
-    if(!this.state.isFinished) {
+    console.log(this.state.project.alreadyBid);
+    if(this.state.project.alreadyBid) {
+      content = <div className="row">
+                  <div className="col-1 icon success">
+                      <i className="flaticon-check-mark"></i>
+                  </div>
+                  <div className="col-6">
+                      <p className="msg success">شما قبلا پیشنهاد خود را ثبت کرده اید</p>
+                  </div>
+                </div>
+    }
+    else if(this.state.isFinished) {
       content = (
             <div className="row">
                 <div className="col-1 icon danger">
@@ -186,12 +209,13 @@ interface Project {
   title: string;
   winnerId: string;
   winnerName: string;
+  alreadyBid: boolean;
 }
 interface State {
   project: Project,
   projectId: string,
   isFinished: boolean,
-  bidAmount: string
+  bidAmount: number
 }
 interface Skill {
   name: string;
