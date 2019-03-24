@@ -186,6 +186,14 @@
   margin-top: 5px;
 }
 
+.projects {
+  margin-right: -35px;
+}
+
+.project-inf {
+  padding-right: 30px;
+}
+
 .project-img img {
   width: 130px;
   height: 130px;
@@ -200,12 +208,26 @@
 }
 
 .project-skill {
-  background-color: #f9f9f9;
+  background-color: whitesmoke;
   font-family: IransansBold;
   border: 1px solid rgba(0, 0, 0, 0.07);
   margin-right: 6px;
   border-radius: 4px;
   direction: ltr;
   padding: 2px 4px;
+}
+
+.remain-time {
+  float: inline-end;
+  width: 65%;
+  font-size: 12px;
+  background-color: whitesmoke;
+  opacity: 0.7;
+  text-align: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=home.css.map */

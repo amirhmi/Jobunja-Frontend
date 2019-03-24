@@ -97,16 +97,18 @@ export default class Header extends Component<Props, State> {
                 });
                 return (
                     <div className="row project-item">
-                        <div className="col-3 project-img">
+                        <div className="col-2 project-img">
                             <img src={project.imageUrl} />
                         </div>
-                        <div className="col-9 project-inf">
+                        <div className="col-10 project-inf">
                             <div className="row">
-                                <div className="col-7 title">
+                                <div className="col-8 title">
                                     {project.title}
                                 </div>
-                                <div className="col-3 offset-2">
-                                    زمان باقی‌مانده: ۱۱
+                                <div className="col-4">
+                                    <div className="remain-time">
+                                        زمان باقی‌مانده: ۱۱:۲۴
+                                    </div>
                                 </div>
                             </div>
                             <div className="row description">
