@@ -85,8 +85,6 @@ export default class RemainTime extends Component<Props, State> {
 
 
 export const isTimeRemain = (time: number) => {
-    console.log(time);
-    console.log(Date.now());
     return time - Date.now() > 0;
   }
 

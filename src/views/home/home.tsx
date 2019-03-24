@@ -4,6 +4,7 @@ import { ErrorHandlerService } from 'src/core/error-handler-service';
 import '../../recourse/icons/font/flaticon.css'
 import Layout from 'src/views/layout/layout'
 import RemainTime, { isTimeRemain } from './remain-time/RemainTime'
+import NeededSkill from './skills/skills'
 import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './home.scss';
 
@@ -24,7 +25,8 @@ export default class Home extends Component<Props, State> {
         winnerId: '',
         winnerName: ''
       },
-      isFinished: true
+      isFinished: true,
+      bidAmount: '0'
     }
     this.getProject();
   }
@@ -41,14 +43,14 @@ export default class Home extends Component<Props, State> {
         this.setState({
           project: res.data,
         });
-        //TODO: remove this line
       })
       .catch( (err: any) => {
         ErrorHandlerService(err);
       });
   }
 
-  showProjectInformation = () => {
+  showWinnerInformation = () => {
+    //TODO: winner name being a link to its user page
     let winner; 
     if(this.state.isFinished && this.state.project.winnerName != '') {
       winner =  (<div className="row success inform-data">
@@ -62,9 +64,11 @@ export default class Home extends Component<Props, State> {
                 </div>
               );
             }
-    
+    return winner;
+  }
+
+  showProjectInformation = () => {
     return (
-      <div className="container content">
         <div className="row information">
             <div className="col-3 project-img">
                 <img src={projectImg} alt="logo" />
@@ -83,21 +87,89 @@ export default class Home extends Component<Props, State> {
                         <p className="text-content">{this.state.project.budget} تومان</p>
                     </div>
                 </div>
-                {winner}
+                {this.showWinnerInformation()}
                 <div className="details">
                     <h5>توضیحات</h5>
                     <p className="justify">&nbsp;&nbsp;&nbsp;&nbsp;{this.state.project.description}</p>
                 </div>
             </div>
         </div>
-      </div>
+    )
+  }
+
+  showProjectNeededSkills() {
+    return (
+    <div className="needed-skills">
+      <label>مهارت های لازم:</label>
+      <NeededSkill skills={this.state.project.skills} />
+    </div>
+    );
+  }
+
+  handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({bidAmount: event.currentTarget.value});
+  }
+
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    
+    axios.post("http://localhost:8080/projects/" + this.state.projectId + "/bid", {
+        bidAmount: this.state.bidAmount
+    })
+    .then(function(response) {
+        console.log(response);
+    }) .catch(function (error) {
+        ErrorHandlerService(error);
+    });
+  }
+
+  showBidForm() {
+    let content;
+    if(!this.state.isFinished) {
+      content = (
+            <div className="row">
+                <div className="col-1 icon danger">
+                    <i className="flaticon-danger"></i>
+                </div>
+                <div className="col-6">
+                    <p className="msg danger">مهلت ارسال پیشنهاد برای این پروژه به پایان رسیده است!</p>
+                </div>
+            </div>
+      )
+    }
+    else {
+      content = (
+        <form onSubmit={this.handleSubmit}>
+          <label>ثبت پیشنهاد</label>
+          <div className="set-bid-form row">
+              <div className="bid-textarea">
+                  <input className="bid-input" type="text" placeholder="پیشنهاد خود را وارد کنید" onChange={this.handleChange} />
+                  <span>تومان</span>
+              </div>
+              <div>
+                  <button className="submit-bid" type="submit">ارسال</button>
+              </div>
+          </div>
+        </form>
+      )
+    }
+
+    return (
+      <div className="set-bid">
+            {content}
+        </div>
     )
   }
 
   render() {
     return (
       <Layout>
+        <div className="container content">
           {this.showProjectInformation()}
+          {this.showProjectNeededSkills()}
+          {this.showBidForm()}
+        </div>
       </Layout>
     );
   }
@@ -118,7 +190,8 @@ interface Project {
 interface State {
   project: Project,
   projectId: string,
-  isFinished: boolean
+  isFinished: boolean,
+  bidAmount: string
 }
 interface Skill {
   name: string;
