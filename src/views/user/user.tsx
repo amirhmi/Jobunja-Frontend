@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { ErrorHandlerService } from 'src/core/error-handler-service';
 import Layout from 'src/views/layout/layout'
-import NeededSkill from 'src/views/project/skills/skills'
+import MySkill from 'src/views/user/skills/mySkills'
 import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './user.scss';
 
@@ -118,6 +118,11 @@ export default class User extends Component<Props, State> {
         </div>
       )
   }
+  showSkills = () => {
+    return (
+        <MySkill skills={this.state.user.skills} />
+      );
+  }
 
   render() {
     return (
@@ -126,6 +131,7 @@ export default class User extends Component<Props, State> {
           {this.showUserInformation()}
           {this.showUserBio()}
           {this.showAddSkill()}
+          {this.showSkills()}
         </div>
       </Layout>
     );
@@ -150,6 +156,6 @@ interface UserObject {
   bio: string,
 }
 interface Skill {
-  name: string,
+  skillname: string,
   point: number,
 }
