@@ -41,7 +41,6 @@ export default class Header extends Component<Props, State> {
            this.setState({
              projects: res.data,
            });
-           this.state.projects[0].deadline = 1553503539123
          })
          .catch( (err: any) => {
            ErrorHandlerService(err);

@@ -111,7 +111,7 @@
     padding-top: 1%;
   }
   
-  .content .set-bid .bid-textarea {
+  .set-bid .bid-textarea {
     border: 2px solid rgb(0, 191, 210);
     border-radius: 5px;
     width: 300px;
@@ -122,13 +122,13 @@
     display: inline-block;
   }
   
-  .content .set-bid .bid-textarea span {
+  .set-bid .bid-textarea span {
     color: rgb(0, 153, 165);
     float: left;
     margin-left: 10px;
   }
   
-  .content .set-bid .submit-bid {
+  .set-bid .submit-bid {
     margin-right: 12px;
     width: 60px;
     height: 47px;
@@ -140,11 +140,7 @@
     cursor: pointer;
   }
   
-  .contet .set-bid-form {
-    display: inline-block;
-  }
-  
-  .content .set-bid .bid-input{
+  .set-bid .bid-input{
     border: none;
   }
   
