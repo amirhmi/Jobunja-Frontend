@@ -3,8 +3,7 @@ import axios from 'axios';
 import { ErrorHandlerService } from 'src/core/error-handler-service';
 import Layout from '../layout/layout';
 import './home.scss'
-
-//TODO: user and project links
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component<Props, State> {
 
@@ -118,7 +117,9 @@ export default class Header extends Component<Props, State> {
                         <img src={user.profile_pic_url} />
                     </div>
                     <div className="col-9 user-inf">
-                        <p className="fullname">{user.first_name} {user.last_name}</p>
+                        <p className="fullname">
+                            <Link to={"/user/" + user.id}>{user.first_name} {user.last_name}</Link>
+                        </p>
                         <p className="job-title">{user.job_title}</p>
                     </div>
                 </div>
@@ -136,7 +137,7 @@ export default class Header extends Component<Props, State> {
             var deadlines = this.getReaminTimes();
 
             let count =  0;
-            var projectElements = this.state.projects.map(function(project) {
+            var projectElements = this.state.projects.map((project) => {
                 let skillElements = project.skills.map(function(skill) {
                     return (
                         <div className="project-skill">
@@ -152,7 +153,11 @@ export default class Header extends Component<Props, State> {
                         <div className="col-10 project-inf">
                             <div className="row">
                                 <div className="col-8 title">
-                                    {project.title}
+                                    <label>
+                                        <Link to={"/project/" + project.id}>
+                                            {project.title}
+                                        </Link>
+                                    </label>
                                 </div>
                                 <div className="col-4">
                                     {deadlines[count++]}
@@ -181,6 +186,10 @@ export default class Header extends Component<Props, State> {
         return '';
     }
 
+    redirectToProject = (id: string) => {
+        <Link to="/project/1"/>
+    }
+
     getReaminTimes = () => {
         return this.state.deadlines.map(function(deadline) {
             if(deadline.isFinished) {
@@ -204,7 +213,8 @@ export default class Header extends Component<Props, State> {
   render() {
     return (
         <Layout>
-            <div className="container content">
+            <div className="row colored-row home-page"></div>
+            <div className="container content home-page">
                 <div className="row home-title">جاب‌اونجا خوب است!</div>
                 <div className="row home-paragraph">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در</div>
                 {this.searchProject()}

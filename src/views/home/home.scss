@@ -1,214 +1,230 @@
-.colored-row {
-    height: 250px;
-}
-
-.content {
+.home-page.content {
     margin-top: -216px;
 }
 
-.home-title {
-    color: rgb(56, 131, 139);
-    font-family: IransansBold;
-    font-size: 30px;
-}
-
-.home-paragraph {
-    font-size: 14px;
-    margin-top: 20px;
-    margin-right: 21px;
-    color: rgb(50,50,50);
-}
-
-.project-search {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.search-project-form {
-    border-bottom: 3px solid rgb(75, 172, 188);
-    background-color: rgb(215, 240, 242);
-
-    .search-project-input {
-        background-color: inherit;
-        input{
-            background-color: inherit;
-            border: none;
-            width: 100%;
-            height: 50px;
-        }
-
-        input:focus{
-            outline: none;
-        }
-
-        ::placeholder {
-            color: rgb(75, 136, 139);
-            font-size: 18px;
-        }
-
-        padding-left: 0px;
+.colored-row.home-page {
+        height: 250px;
     }
 
-    .submit-search-project {
-        padding-right: 0px;
-        button {
-            background-color: rgb(75, 172, 188);
-            border: none;
-            color: white;
-            width: 100px;
-            height: 40px;
-            margin-top: 0.35em;
-            margin-right: 17px;
-            cursor: pointer;
-        }
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-    .submit-search-project button {
-      width: 80px !important;
-      margin-right: -10px !important;
-    }
-  }
-
-  @media only screen and (max-width: 1200px) and (min-width: 990px) {
-    .submit-search-project button {
-        width: 90px !important;
-        margin-right: 6px !important;
-    }
-  }
-
-.main-content {
-    margin-top: 3%;
-}
-
-.users {
-    input {
-        width: 225px;
-        height: 45px;
-        border: 3px solid white;
-        border-radius: 3px;
-        background-color: rgb(249, 249, 249);
-        padding-right: 8px;
-        margin-bottom: 10px;
-    }
-
-    input::placeholder {
-        opacity: 0.5;
-    }
-}
-
-.user-img {
-    // margin-top: 10px;
-
-    img {
-        width: 60px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-}
-
-.user-row {
-    background-color: white;
-    border-radius: 3px;
-    margin-bottom: 5px;
-    width: 225px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-
-    .fullname {
-        font-size: 13px;
-    }
-
-    .job-title {
-        font-size: 10px;
-        opacity: 0.6;
-    }
-
-    p {
-        margin-bottom: 5px;
-        padding-right: 15px;
-    }
-}
-
-.project-item {
-    background-color: white;
-    padding: 15px 0px;
-    margin-bottom: 15px;
-    max-height: 154px;
-
-    .title {
-        padding: 0px;
+.home-page {
+    
+    .home-title {
+        color: rgb(56, 131, 139);
         font-family: IransansBold;
-        font-size: 19px;
+        font-size: 30px;
     }
-
-    .description {
-        font-size: 13px;
-        opacity: 0.8;
-        margin-left: 48px;
-        margin-top: 10px;
+    
+    .home-paragraph {
+        font-size: 14px;
+        margin-top: 20px;
+        margin-right: 21px;
+        color: rgb(50,50,50);
     }
-
-    .budget {
-        color: rgb(0,133,141);
-        font-size: 13px;
-        font-weight: bolder;
-        margin-top: 8px;
+    
+    .project-search {
+        width: 100%;
+        margin-top: 20px;
     }
-
-    .skills {
+    
+    .search-project-form {
+        border-bottom: 3px solid rgb(75, 172, 188);
+        background-color: rgb(215, 240, 242);
+    
+        .search-project-input {
+            background-color: inherit;
+            input{
+                background-color: inherit;
+                border: none;
+                width: 100%;
+                height: 50px;
+            }
+    
+            input:focus{
+                outline: none;
+            }
+    
+            ::placeholder {
+                color: rgb(75, 136, 139);
+                font-size: 18px;
+            }
+    
+            padding-left: 0px;
+        }
+    
+        .submit-search-project {
+            padding-right: 0px;
+            button {
+                background-color: rgb(75, 172, 188);
+                border: none;
+                color: white;
+                width: 100px;
+                height: 40px;
+                margin-top: 0.35em;
+                margin-right: 17px;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 1024px) {
+        .submit-search-project button {
+          width: 80px !important;
+          margin-right: -10px !important;
+        }
+      }
+    
+      @media only screen and (max-width: 1200px) and (min-width: 990px) {
+        .submit-search-project button {
+            width: 90px !important;
+            margin-right: 6px !important;
+        }
+      }
+    
+    .main-content {
+        margin-top: 3%;
+    }
+    
+    .users {
+        input {
+            width: 225px;
+            height: 45px;
+            border: 3px solid white;
+            border-radius: 3px;
+            background-color: rgb(249, 249, 249);
+            padding-right: 8px;
+            margin-bottom: 10px;
+        }
+    
+        input::placeholder {
+            opacity: 0.5;
+        }
+    }
+    
+    .user-img {
+        // margin-top: 10px;
+    
+        img {
+            width: 60px;
+            border-radius: 5px;
+        }
+    }
+    
+    .user-row {
+        background-color: white;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        width: 225px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    
+        .fullname {
+            font-size: 13px;
+        }
+    
+        .job-title {
+            font-size: 10px;
+            opacity: 0.6;
+        }
+    
+        p {
+            margin-bottom: 5px;
+            padding-right: 15px;
+        }
+    }
+    
+    .project-item {
+        background-color: white;
+        padding: 15px 0px;
+        margin-bottom: 15px;
+        max-height: 154px;
+    
+        .title label{
+            padding: 0px;
+            font-family: IransansBold;
+            font-size: 19px;
+            margin: 0px;
+        }
+    
+        .title label:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    
+        .description {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-left: 48px;
+            margin-top: 10px;
+        }
+    
+        .budget {
+            color: rgb(0,133,141);
+            font-size: 13px;
+            font-weight: bolder;
+            margin-top: 8px;
+        }
+    
+        .skills {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-top: 5px;
+        }
+    }
+    
+    .projects {
+        margin-right: -35px;
+    }
+    
+    .project-inf {
+        padding-right: 30px;
+    }
+    
+    .project-img img{
+        width: 130px;
+        height: 130px;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        border-radius: 4px;
+    }
+    
+    .skills label {
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
+    
+    .project-skill {
+        background-color: rgb(245, 245, 245);
+        font-family: IransansBold;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        margin-right: 6px;
+        border-radius: 4px;
+        direction: ltr;
+        padding: 2px 4px;
+    }
+    
+    .remain-time {
+        float: left;
+        width: 65%;
         font-size: 12px;
-        opacity: 0.5;
-        margin-top: 5px;
+        background-color: rgb(245,245,245);
+        opacity: 0.7;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        border-radius: 3px;
     }
-}
+    
+    .remain-time.finished {
+        background-color: rgb(55, 124, 126);
+        color: white;
+        width: 50%;
+    }
 
-.projects {
-    margin-right: -35px;
-}
+    a{
+        all: unset;
+    }
 
-.project-inf {
-    padding-right: 30px;
-}
-
-.project-img img{
-    width: 130px;
-    height: 130px;
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.skills label {
-    margin-top: 4px;
-    margin-bottom: 0px;
-}
-
-.project-skill {
-    background-color: rgb(245, 245, 245);
-    font-family: IransansBold;
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    margin-right: 6px;
-    border-radius: 4px;
-    direction: ltr;
-    padding: 2px 4px;
-}
-
-.remain-time {
-    float: left;
-    width: 65%;
-    font-size: 12px;
-    background-color: rgb(245,245,245);
-    opacity: 0.7;
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    border-radius: 3px;
-}
-
-.remain-time.finished {
-    background-color: rgb(55, 124, 126);
-    color: white;
-    width: 50%;
+    a:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }

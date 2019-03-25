@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap-with-rtl/dist/css/bootstrap.rtl.css';
 import 'src/views/layout/layout.scss'
-// import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from 'src/views/home/home';
 import Project from 'src/views/project/project';
 
 ReactDOM.render(
   <Router>
+    <Switch>
     <Route exact path="/" component={Home} />
-    {/* <Route path="/Project" component={Project} /> */}
-    {/* <Route path="/profile" component={User} /> */}
+    <Route exact path="/home" component={Home} />
+    <Route exact path="/project/:id" component={Project} />
+    </Switch>
   </Router>,
   document.getElementById('root')
 );

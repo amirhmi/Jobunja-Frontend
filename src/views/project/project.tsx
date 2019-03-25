@@ -11,11 +11,12 @@ import './project.scss';
 //TODO: show error message with react
 
 export default class Project extends Component<Props, State> {
-  
+
   constructor(props: Props) {
     super(props);
+    const { match: { params } } = this.props;
     this.state = {
-      projectId: "a1f824a0-d650-483a-bbd1-91c4145e3f9a",
+      projectId: params.id,
       project: {
         budget: 0,
         deadline: 0,
@@ -140,7 +141,6 @@ export default class Project extends Component<Props, State> {
 
   showBidForm() {
     let content;
-    console.log(this.state.project.alreadyBid);
     if(this.state.project.alreadyBid) {
       content = <div className="row">
                   <div className="col-1 icon success">
@@ -190,7 +190,8 @@ export default class Project extends Component<Props, State> {
   render() {
     return (
       <Layout>
-        <div className="container content">
+        <div className="row colored-row project-page"></div>        
+        <div className="container content project-page">
           {this.showProjectInformation()}
           {this.showProjectNeededSkills()}
           {this.showBidForm()}
@@ -223,4 +224,6 @@ interface Skill {
   name: string;
   point: number;
 }
-interface Props {}
+interface Props {
+  match: any;
+}
