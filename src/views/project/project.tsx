@@ -5,7 +5,6 @@ import '../../recourse/icons/font/flaticon.css'
 import Layout from 'src/views/layout/layout'
 import RemainTime, { isTimeRemain } from './remain-time/RemainTime'
 import NeededSkill from './skills/skills'
-import projectImg from '../../recourse/pictures/girl-with-books.png'
 import './project.scss';
 
 //TODO: show error message with react
@@ -30,23 +29,29 @@ export default class Project extends Component<Props, State> {
         alreadyBid: false
       },
       isFinished: true,
-      bidAmount: 0
+      bidAmount: 0,
+      loading: true
     }
-    this.getProject();
   }
 
-  componentWillMount() {
+  async componentDidMount() {
+    let data = await this.getProject();
+    var isFinished = !isTimeRemain(data.deadline);
+    this.setState({
+      project: data,
+      isFinished: isFinished,
+      loading: false
+    });
     setInterval(() => this.setState({
         isFinished: !isTimeRemain(this.state.project.deadline)
       }), 1000);
+    
   }
 
   getProject = async () => {
-     await axios.get(`http://localhost:8080/projects/` + this.state.projectId)
+     return await axios.get(`http://localhost:8080/projects/` + this.state.projectId)
       .then( (res: any) => {
-        this.setState({
-          project: res.data,
-        });
+        return res.data;
       })
       .catch( (err: any) => {
         ErrorHandlerService(err);
@@ -75,7 +80,7 @@ export default class Project extends Component<Props, State> {
     return (
         <div className="row information">
             <div className="col-3 project-img">
-                <img src={projectImg} alt="logo" />
+                <img src={this.state.project.imageUrl} alt="logo" />
             </div>
             <div className="col-8 data">
                 <div className="row project-name">
@@ -189,6 +194,7 @@ export default class Project extends Component<Props, State> {
 
   render() {
     return (
+      this.state.loading ? <div></div> :
       <Layout>
         <div className="row colored-row project-page"></div>        
         <div className="container content project-page">
@@ -218,7 +224,8 @@ interface State {
   project: IProject,
   projectId: string,
   isFinished: boolean,
-  bidAmount: number
+  bidAmount: number,
+  loading: boolean
 }
 interface Skill {
   name: string;

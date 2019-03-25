@@ -8,16 +8,9 @@ export default class RemainTime extends Component<Props, State> {
         super(props);
         this.state = {
             deadline: props.deadline,
-            isFinished: true
+            isFinished: props.isFinished
         }
       }
-
-    componentWillReceiveProps(newProps: Props) {
-        this.setState({
-            deadline: newProps.deadline,
-            isFinished: newProps.isFinished
-        });
-    }
 
     render() {
         let time

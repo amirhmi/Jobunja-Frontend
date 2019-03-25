@@ -246,7 +246,7 @@ function toPersianNum(n: number) {
 interface State {
     projects: IProject[],
     users: IUser[],
-    deadlines: IDeadline[]
+    deadlines: IDeadline[],
 }
 interface Props {}
 
