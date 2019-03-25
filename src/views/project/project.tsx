@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ErrorHandlerService } from 'src/core/error-handler-service';
+import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from 'src/core/error-handler-service';
 import '../../recourse/icons/font/flaticon.css'
 import Layout from 'src/views/layout/layout'
 import RemainTime, { isTimeRemain } from './remain-time/RemainTime'
 import NeededSkill from './skills/skills'
 import './project.scss';
-
-//TODO: show error message with react
 
 export default class Project extends Component<Props, State> {
 
@@ -54,7 +52,7 @@ export default class Project extends Component<Props, State> {
         return res.data;
       })
       .catch( (err: any) => {
-        ErrorHandlerService(err);
+        // ErrorHandlerService(err);
       });
   }
 
@@ -116,11 +114,30 @@ export default class Project extends Component<Props, State> {
   }
 
   handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    console.log(event.currentTarget.value.length);
+    console.log(this.state.bidAmount.toString().length);
+    if(event.currentTarget.value.length > 0 && 
+      event.currentTarget.value.length > this.state.bidAmount.toString().length &&
+      !event.currentTarget.value[event.currentTarget.value.length-1].toString().match(/^-{0,1}\d+$/)) {
+      WarningHandlerService("پیشنهاد می بایست عدد باشد");
+      event.currentTarget.value = this.state.bidAmount.toString();
+      return;
+    }
     this.setState({bidAmount: parseInt(event.currentTarget.value)});
   }
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if(!this.state.bidAmount.toString().match(/^-{0,1}\d+$/)) {
+      ErrorHandlerService("پیشنهاد می بایست عدد باشد");
+      return;
+    }
+
+    if(this.state.bidAmount > this.state.project.budget) {
+      ErrorHandlerService("مبلغ پیشنهادی از بودجه بیشتر می باشد");
+      return;
+    }
+
     const params = {
       bidAmount: this.state.bidAmount
     };
@@ -138,9 +155,10 @@ export default class Project extends Component<Props, State> {
         newProject.alreadyBid = true;
         this.setState({
           project: newProject
-        })
+        });
+        SuccessHandlerService("پیشنهاد شما ثبت شد")
     }) .catch(function (error) {
-        ErrorHandlerService(error);
+        ErrorHandlerService("خطا در ثبت پیشنهاد");
     });
   }
 

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import {NotificationManager} from 'react-notifications';
 import { ErrorHandlerService } from 'src/core/error-handler-service';
 
+//FIXME: change navbar header
+
 export default class Signup extends Component<Props, State> {
 
     constructor(props: Props) {
