@@ -12,10 +12,16 @@ export default class Header extends Component<Props, State> {
         super(props);
         this.state = {
             users: [],
-            projects: []
+            projects: [],
+            deadlines: []
         }
         this.getUsers();
         this.getProjects();
+      }
+
+    componentWillMount() {
+        setInterval(() => this.updateProjectsTime()
+        , 1000);
       }
 
     getUsers = async () => {
@@ -36,11 +42,51 @@ export default class Header extends Component<Props, State> {
            this.setState({
              projects: res.data,
            });
+           this.state.projects[0].deadline = 1553503539123
          })
          .catch( (err: any) => {
            ErrorHandlerService(err);
          });
      }
+
+    updateProjectsTime = () => {
+        let times: IDeadline[] = [];
+        for(let i = 0; i < this.state.projects.length; i++) {
+            times.push(this.findProjectDeadlineTime(this.state.projects[i]));
+        }
+        this.setState({
+            deadlines: times
+        });
+    }
+
+    findProjectDeadlineTime = (project: IProject) : IDeadline => {
+        let deadline : IDeadline = {isFinished: false, remainTime: ''}
+        if(project.deadline < Date.now()) {
+            deadline.isFinished = true;
+            return deadline;
+        }
+        var delta = Math.abs(project.deadline - Date.now()) / 1000;
+        var days = Math.floor(delta / 86400);
+        if(days > 0) {
+            deadline.remainTime = toPersianNum(days) + " روز";
+            return deadline;
+        }
+        delta -= days * 86400;
+        var hours = Math.floor(delta / 3600) % 24;
+        if(hours > 0) {
+            deadline.remainTime = toPersianNum(hours) + " ساعت";
+            return deadline;
+        }
+        delta -= hours * 3600;
+        var minutes = Math.floor(delta / 60) % 60;
+        delta -= minutes * 60;
+        var seconds = delta % 60;
+        if(Math.floor(seconds) > 9)
+            deadline.remainTime = toPersianNum(minutes) + ":" + toPersianNum(Math.floor(seconds));
+        else
+            deadline.remainTime = toPersianNum(minutes) + ":0" + toPersianNum(Math.floor(seconds));
+        return deadline;
+    }
 
     searchProject = () => {
         return (
@@ -87,6 +133,9 @@ export default class Header extends Component<Props, State> {
 
     showProjects = () => {
         if(this.state.projects.length > 0) {
+            var deadlines = this.getReaminTimes();
+
+            let count =  0;
             var projectElements = this.state.projects.map(function(project) {
                 let skillElements = project.skills.map(function(skill) {
                     return (
@@ -106,9 +155,7 @@ export default class Header extends Component<Props, State> {
                                     {project.title}
                                 </div>
                                 <div className="col-4">
-                                    <div className="remain-time">
-                                        زمان باقی‌مانده: ۱۱:۲۴
-                                    </div>
+                                    {deadlines[count++]}
                                 </div>
                             </div>
                             <div className="row description">
@@ -132,6 +179,25 @@ export default class Header extends Component<Props, State> {
         );
         }
         return '';
+    }
+
+    getReaminTimes = () => {
+        return this.state.deadlines.map(function(deadline) {
+            if(deadline.isFinished) {
+                return(
+                    <div className="remain-time finished">
+                        مهلت تمام شده
+                    </div>
+                )
+            }
+            else {
+                return(
+                    <div className="remain-time">
+                        زمان باقی مانده: {deadline.remainTime}
+                    </div>
+                )
+            }
+        });
     }
 
 
@@ -159,9 +225,19 @@ export default class Header extends Component<Props, State> {
   }
 }
 
+function toPersianNum(n: number) {
+    const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    return n
+      .toString()
+      .split('')
+      .map(x => farsiDigits[parseInt(x)])
+      .join('');
+  }
+
 interface State {
     projects: IProject[],
-    users: IUser[]
+    users: IUser[],
+    deadlines: IDeadline[]
 }
 interface Props {}
 
@@ -186,8 +262,12 @@ interface IProject {
     winnerId: string;
     winnerName: string;
     alreadyBid: boolean;
-  }
+}
 interface Skill {
     name: string;
     point: number;
+}
+interface IDeadline {
+    isFinished: boolean,
+    remainTime: string
 }

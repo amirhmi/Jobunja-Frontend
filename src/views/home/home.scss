@@ -196,7 +196,7 @@
 }
 
 .remain-time {
-    float: inline-end;
+    float: left;
     width: 65%;
     font-size: 12px;
     background-color: rgb(245,245,245);
@@ -204,4 +204,11 @@
     text-align: center;
     align-content: center;
     align-items: center;
+    border-radius: 3px;
+}
+
+.remain-time.finished {
+    background-color: rgb(55, 124, 126);
+    color: white;
+    width: 50%;
 }
