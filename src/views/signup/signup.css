@@ -1,0 +1,184 @@
+.signup-page.colored-row {
+  height: 120px;
+}
+
+.signup-page.content {
+  -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+  margin-top: -5%;
+  background-color: white;
+  border-radius: 5px;
+  padding-top: 2%;
+}
+
+.signup-page .submit-btn button {
+  width: 100%;
+  color: white;
+  background-color: #44a2ce;
+  border-color: #44a2ce;
+  cursor: pointer;
+}
+
+.signup-page .submit-btn button:hover {
+  background-color: #4095a0;
+  border-color: #4095a0;
+}
+
+.signup-page .submit-btn button:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.signup-page .already-login {
+  display: inline-block;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.signup-page .already-login p {
+  display: inline-block;
+}
+
+.signup-page .already-login a {
+  display: inline-block;
+}
+
+.signup-page .already-login a:hover {
+  text-decoration: underline !important;
+  color: #46a2ce !important;
+}
+
+.signup-page a {
+  text-align: center;
+  display: block;
+}
+
+.signup-page .slider {
+  max-width: 90%;
+  min-height: 86%;
+  margin: 20px;
+  margin-top: 0px;
+  position: relative;
+}
+
+.signup-page .slide1, .signup-page .slide2, .signup-page .slide3, .signup-page .slide4, .signup-page .slide5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.signup-page .slide1 {
+  background: url("../../recourse/pictures/signup-1.png") no-repeat center;
+  background-size: cover;
+  animation: fade 8s infinite;
+  -webkit-animation: fade 8s infinite;
+}
+
+.signup-page .slide2 {
+  background: url("../../recourse/pictures/signup-2.jpg") no-repeat center;
+  background-size: cover;
+  animation: fade2 8s infinite;
+  -webkit-animation: fade2 8s infinite;
+}
+
+.signup-page .slide3 {
+  background: url("../../recourse/pictures/signup-3.jpeg") no-repeat center;
+  background-size: cover;
+  animation: fade3 8s infinite;
+  -webkit-animation: fade3 8s infinite;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  33.333% {
+    opacity: 0;
+  }
+  66.666% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  33.333% {
+    opacity: 0;
+  }
+  66.666% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade2 {
+  0% {
+    opacity: 0;
+  }
+  33.333% {
+    opacity: 1;
+  }
+  66.666% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade2 {
+  0% {
+    opacity: 0;
+  }
+  33.333% {
+    opacity: 1;
+  }
+  66.666% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fade3 {
+  0% {
+    opacity: 0;
+  }
+  33.333% {
+    opacity: 0;
+  }
+  66.666% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade3 {
+  0% {
+    opacity: 0;
+  }
+  33.333% {
+    opacity: 0;
+  }
+  66.666% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.signup-page a {
+  color: inherit;
+}
+/*# sourceMappingURL=signup.css.map */

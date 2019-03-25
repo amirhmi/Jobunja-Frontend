@@ -7,12 +7,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from 'src/views/home/home';
 import Project from 'src/views/project/project';
+import Signup from './views/signup/signup';
 
 ReactDOM.render(
   <Router>
     <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/home" component={Home} />
+    <Route exact path="/signup" component={Signup} />
     <Route exact path="/project/:id" component={Project} />
     </Switch>
   </Router>,

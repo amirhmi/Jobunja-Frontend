@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { string } from 'prop-types';
 
-//FIXME: on start of a finished project
-
 export default class RemainTime extends Component<Props, State> {
     constructor(props: Props) {
         super(props);

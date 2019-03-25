@@ -1,0 +1,112 @@
+.signup-page.colored-row {
+    height: 120px;
+}
+
+.signup-page.content {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 -1px 4px 0 rgba(0, 0, 0, 0.09);
+    margin-top: -5%;
+    background-color: white;
+    border-radius: 5px;
+    padding-top: 2%;
+}
+
+.signup-page {
+    .submit-btn button {
+        width: 100%;
+        color: white;
+        background-color: rgb(68, 162, 206);
+        border-color: rgb(68, 162, 206);
+        cursor: pointer;
+      }
+      
+      .submit-btn button:hover {
+        background-color: rgb(64, 149, 160);
+        border-color: rgb(64, 149, 160);
+      }
+      
+      .submit-btn button:focus {
+        box-shadow: none;
+      }
+      
+      .already-login {
+        display: inline-block;
+        opacity: 0.7;
+        font-size: 12px;
+      
+        p {
+          display: inline-block;
+        }
+      
+        a {
+          display: inline-block;
+        }
+      
+        a:hover {
+          text-decoration: underline !important;
+          color: rgb(70, 162, 206) !important;
+        }
+      }
+      
+      a{
+        text-align:center;
+        display:block;
+      }
+      
+      
+      .slider {
+        max-width: 90%;
+        min-height: 86%;
+        margin: 20px;
+        margin-top: 0px;
+        position: relative;
+      }
+      .slide1,.slide2,.slide3,.slide4,.slide5 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .slide1 {
+        background: url("../../recourse/pictures/signup-1.png") no-repeat center;
+        background-size: cover;
+        animation:fade 8s infinite;
+        -webkit-animation:fade 8s infinite;
+      
+      }
+      .slide2 {
+        background: url("../../recourse/pictures/signup-2.jpg") no-repeat center;
+        background-size: cover;
+        animation:fade2 8s infinite;
+        -webkit-animation:fade2 8s infinite;
+      }
+      .slide3 {
+        background: url("../../recourse/pictures/signup-3.jpeg") no-repeat center;
+        background-size: cover;
+        animation:fade3 8s infinite;
+        -webkit-animation:fade3 8s infinite;
+      }
+      @keyframes fade
+      {
+        0%   {opacity:1}
+        33.333% { opacity: 0}
+        66.666% { opacity: 0}
+        100% { opacity: 1}
+      }
+      @keyframes fade2
+      {
+        0%   {opacity:0}
+        33.333% { opacity: 1}
+        66.666% { opacity: 0 }
+        100% { opacity: 0}
+      }
+      @keyframes fade3
+      {
+        0%   {opacity:0}
+        33.333% { opacity: 0}
+        66.666% { opacity: 1}
+        100% { opacity: 0}
+      }
+
+      a{
+          color: inherit;
+      }
+}

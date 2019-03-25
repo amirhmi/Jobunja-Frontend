@@ -1,75 +1,75 @@
-.colored-row {
-  height: 250px;
-}
-
-.content {
+.home-page.content {
   margin-top: -216px;
 }
 
-.home-title {
+.colored-row.home-page {
+  height: 250px;
+}
+
+.home-page .home-title {
   color: #38838b;
   font-family: IransansBold;
   font-size: 30px;
 }
 
-.home-paragraph {
+.home-page .home-paragraph {
   font-size: 14px;
   margin-top: 20px;
   margin-right: 21px;
   color: #323232;
 }
 
-.project-search {
+.home-page .project-search {
   width: 100%;
   margin-top: 20px;
 }
 
-.search-project-form {
+.home-page .search-project-form {
   border-bottom: 3px solid #4bacbc;
   background-color: #d7f0f2;
 }
 
-.search-project-form .search-project-input {
+.home-page .search-project-form .search-project-input {
   background-color: inherit;
   padding-left: 0px;
 }
 
-.search-project-form .search-project-input input {
+.home-page .search-project-form .search-project-input input {
   background-color: inherit;
   border: none;
   width: 100%;
   height: 50px;
 }
 
-.search-project-form .search-project-input input:focus {
+.home-page .search-project-form .search-project-input input:focus {
   outline: none;
 }
 
-.search-project-form .search-project-input ::-webkit-input-placeholder {
+.home-page .search-project-form .search-project-input ::-webkit-input-placeholder {
   color: #4b888b;
   font-size: 18px;
 }
 
-.search-project-form .search-project-input :-ms-input-placeholder {
+.home-page .search-project-form .search-project-input :-ms-input-placeholder {
   color: #4b888b;
   font-size: 18px;
 }
 
-.search-project-form .search-project-input ::-ms-input-placeholder {
+.home-page .search-project-form .search-project-input ::-ms-input-placeholder {
   color: #4b888b;
   font-size: 18px;
 }
 
-.search-project-form .search-project-input ::placeholder {
+.home-page .search-project-form .search-project-input ::placeholder {
   color: #4b888b;
   font-size: 18px;
 }
 
-.search-project-form .submit-search-project {
+.home-page .search-project-form .submit-search-project {
   padding-right: 0px;
 }
 
-.search-project-form .submit-search-project button {
+.home-page .search-project-form .submit-search-project button {
   background-color: #4bacbc;
   border: none;
   color: white;
@@ -80,25 +80,72 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 1024px) {
-  .submit-search-project button {
+@media only screen and (max-width: 990px) {
+  .home-page .submit-search-project button {
     width: 80px !important;
     margin-right: -10px !important;
+  }
+  .home-page .project-img img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  .home-page .project-inf {
+    padding-right: 68px !important;
+  }
+  .home-page .users input {
+    width: 200px !important;
+  }
+  .home-page .user-row {
+    width: 200px !important;
+  }
+  .home-page .projects {
+    padding-right: 80px;
+    margin-right: 0px;
+  }
+  .home-page .remain-time {
+    width: 120px !important;
+  }
+  .home-page .description {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .home-page .project-item {
+    margin-left: -50px !important;
   }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 990px) {
-  .submit-search-project button {
+  .home-page .submit-search-project button {
     width: 90px !important;
     margin-right: 6px !important;
   }
+  .home-page .project-img img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  .home-page .users input {
+    width: 200px !important;
+  }
+  .home-page .user-row {
+    width: 200px !important;
+  }
+  .home-page .remain-time {
+    width: 120px !important;
+  }
+  .home-page .description {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .home-page .project-item {
+    margin-left: -50px !important;
+  }
 }
 
-.main-content {
+.home-page .main-content {
   margin-top: 3%;
 }
 
-.users input {
+.home-page .users input {
   width: 225px;
   height: 45px;
   border: 3px solid white;
@@ -108,29 +155,28 @@
   margin-bottom: 10px;
 }
 
-.users input::-webkit-input-placeholder {
+.home-page .users input::-webkit-input-placeholder {
   opacity: 0.5;
 }
 
-.users input:-ms-input-placeholder {
+.home-page .users input:-ms-input-placeholder {
   opacity: 0.5;
 }
 
-.users input::-ms-input-placeholder {
+.home-page .users input::-ms-input-placeholder {
   opacity: 0.5;
 }
 
-.users input::placeholder {
+.home-page .users input::placeholder {
   opacity: 0.5;
 }
 
-.user-img img {
+.home-page .user-img img {
   width: 60px;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-.user-row {
+.home-page .user-row {
   background-color: white;
   border-radius: 3px;
   margin-bottom: 5px;
@@ -139,75 +185,80 @@
   padding-bottom: 6px;
 }
 
-.user-row .fullname {
+.home-page .user-row .fullname {
   font-size: 13px;
 }
 
-.user-row .job-title {
+.home-page .user-row .job-title {
   font-size: 10px;
   opacity: 0.6;
 }
 
-.user-row p {
+.home-page .user-row p {
   margin-bottom: 5px;
   padding-right: 15px;
 }
 
-.project-item {
+.home-page .project-item {
   background-color: white;
   padding: 15px 0px;
   margin-bottom: 15px;
   max-height: 154px;
 }
 
-.project-item .title {
+.home-page .project-item .title label {
   padding: 0px;
   font-family: IransansBold;
   font-size: 19px;
+  margin: 0px;
 }
 
-.project-item .description {
+.home-page .project-item .title label:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.home-page .project-item .description {
   font-size: 13px;
   opacity: 0.8;
   margin-left: 48px;
   margin-top: 10px;
 }
 
-.project-item .budget {
+.home-page .project-item .budget {
   color: #00858d;
   font-size: 13px;
   font-weight: bolder;
   margin-top: 8px;
 }
 
-.project-item .skills {
+.home-page .project-item .skills {
   font-size: 12px;
   opacity: 0.5;
   margin-top: 5px;
 }
 
-.projects {
+.home-page .projects {
   margin-right: -35px;
 }
 
-.project-inf {
+.home-page .project-inf {
   padding-right: 30px;
 }
 
-.project-img img {
+.home-page .project-img img {
   width: 130px;
   height: 130px;
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 4px;
-  cursor: pointer;
 }
 
-.skills label {
+.home-page .skills label {
   margin-top: 4px;
   margin-bottom: 0px;
 }
 
-.project-skill {
+.home-page .project-skill {
   background-color: whitesmoke;
   font-family: IransansBold;
   border: 1px solid rgba(0, 0, 0, 0.07);
@@ -217,7 +268,7 @@
   padding: 2px 4px;
 }
 
-.remain-time {
+.home-page .remain-time {
   float: left;
   width: 65%;
   font-size: 12px;
@@ -232,9 +283,18 @@
   border-radius: 3px;
 }
 
-.remain-time.finished {
+.home-page .remain-time.finished {
   background-color: #377c7e;
   color: white;
   width: 50%;
+}
+
+.home-page a {
+  all: unset;
+}
+
+.home-page a:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 /*# sourceMappingURL=home.css.map */

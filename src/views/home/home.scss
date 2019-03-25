@@ -66,10 +66,45 @@
         }
     }
     
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 990px) {
         .submit-search-project button {
           width: 80px !important;
           margin-right: -10px !important;
+        }
+
+        .project-img img {
+            width: 110px !important;
+            height: 110px !important;
+        }
+
+        .project-inf {
+            padding-right: 68px !important;
+        }
+
+        .users input {
+            width: 200px !important;
+        }
+
+        .user-row {
+            width: 200px !important;
+        }
+
+        .projects {
+            padding-right: 80px;
+            margin-right: 0px;
+        }
+
+        .remain-time {
+            width: 120px !important;
+        }
+
+        .description {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .project-item {
+            margin-left: -50px !important;
         }
       }
     
@@ -77,6 +112,32 @@
         .submit-search-project button {
             width: 90px !important;
             margin-right: 6px !important;
+        }
+
+        .project-img img {
+            width: 110px !important;
+            height: 110px !important;
+        }
+
+        .users input {
+            width: 200px !important;
+        }
+
+        .user-row {
+            width: 200px !important;
+        }
+
+        .remain-time {
+            width: 120px !important;
+        }
+
+        .description {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .project-item {
+            margin-left: -50px !important;
         }
       }
     
