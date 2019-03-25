@@ -1,3 +1,5 @@
-export const ErrorHandlerService = (error: any) => {
-  console.error(error);
+import {NotificationManager} from 'react-notifications';
+
+export const ErrorHandlerService = (error: string) => {
+  NotificationManager.error(error);
 };

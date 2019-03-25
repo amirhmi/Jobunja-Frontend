@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap-with-rtl/dist/css/bootstrap.rtl.css';
+import 'react-notifications/lib/notifications.css';
 import 'src/views/layout/layout.scss'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

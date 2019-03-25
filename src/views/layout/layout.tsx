@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NotificationContainer} from 'react-notifications';
 import Header from './header/header'
 import Footer from './footer/footer'
 import Main from './main/main'
@@ -13,6 +14,7 @@ export default class Layout extends Component<Props, State> {
           {this.props.children}
         </Main>
         <Footer />
+        <NotificationContainer/>
       </div>
     );
   }
