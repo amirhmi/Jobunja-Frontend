@@ -76,24 +76,31 @@ export default class Signup extends Component<Props, State> {
         event.preventDefault();
         if(this.state.firstname == '') {
             ErrorHandlerService("نام خالی می باشد");
+            return;
         }
         else if(this.state.lastname == '') {
             ErrorHandlerService("نام خانوادگی خالی می باشد");
+            return;
         }
         else if(this.state.username == '') {
             ErrorHandlerService("نام کاربری خالی می باشد");
+            return;
         }
         else if(this.state.password.length < 6) {
             ErrorHandlerService("رمز عبور کمتر از ۶ حرف می باشد");
+            return;
         }
         else if(this.state.confirmpassword != this.state.password) {
             ErrorHandlerService("رمز عبور و تایید رمز برابر نمی باشد");
+            return;
         }
         else if(this.state.jobtitle == '') {
             ErrorHandlerService("عنوان شغلی خالی می باشد");
+            return;
         }
         else if(this.state.imgurl == '') {
             ErrorHandlerService("لینک عکس خالی می باشد");
+            return;
         }
     } 
 

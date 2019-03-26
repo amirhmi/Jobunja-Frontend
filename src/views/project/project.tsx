@@ -156,7 +156,7 @@ export default class Project extends Component<Props, State> {
         this.setState({
           project: newProject
         });
-        SuccessHandlerService("پیشنهاد شما ثبت شد")
+        SuccessHandlerService("پیشنهاد شما ثبت شد");
     }) .catch(function (error) {
         ErrorHandlerService("خطا در ثبت پیشنهاد");
     });
