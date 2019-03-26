@@ -52,7 +52,7 @@ export default class Project extends Component<Props, State> {
         return res.data;
       })
       .catch( (err: any) => {
-        // ErrorHandlerService(err);
+        ErrorHandlerService("خطا در ارتباط با سرور");
       });
   }
 

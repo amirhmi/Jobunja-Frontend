@@ -31,8 +31,8 @@ export default class Header extends Component<Props, State> {
            });
          })
          .catch( (err: any) => {
-           ErrorHandlerService(err);
-         });
+            ErrorHandlerService("خطا در برقراری ارتباط با سرور");
+        });
      }
 
      getProjects = async () => {
@@ -43,8 +43,8 @@ export default class Header extends Component<Props, State> {
            });
          })
          .catch( (err: any) => {
-           ErrorHandlerService(err);
-         });
+            ErrorHandlerService("خطا در برقراری ارتباط با سرور");
+        });
      }
 
     updateProjectsTime = () => {

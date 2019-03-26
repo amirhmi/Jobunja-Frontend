@@ -4,8 +4,36 @@ import JobunjaLogo from '../../../recourse/logo/logo-v1.png'
 import { Link } from 'react-router-dom';
 
 export default class Header extends Component<Props, State> {
-  //TODO: correct <a> links
+  //TODO: profile link
   render() {
+      let logo, profile, exit;
+    if(this.props.disable == null || this.props.disable == false) {
+        profile = (
+            <div className="col-2 offset-8 account-link">
+                <span>
+                    <a className="profile-link" href="profile.html">حساب کاربری</a>
+                </span>
+            </div>
+        );
+        exit = (
+            <div className="col-1">
+                <span>
+                    <a className="exit-link">خروج</a>
+                </span>
+            </div>
+        );
+        logo = (
+            <Link to="/">
+                <img src={JobunjaLogo} alt="logo" />
+            </Link>
+        );
+    }
+    else {
+        profile = '';
+        exit='';
+        logo =  <img src={JobunjaLogo} alt="logo" />
+
+    }
     return (
         <header>
             <div className="header">
@@ -13,21 +41,11 @@ export default class Header extends Component<Props, State> {
                     <div className="row navbar-header align-items-center">
                         <div className="col-1">
                             <span className="logo_icon">
-                                <Link to="/">
-                                    <img src={JobunjaLogo} alt="logo" />
-                                </Link>
+                                {logo}
                             </span>
                         </div>
-                        <div className="col-2 offset-8 account-link">
-                            <span>
-                                <a className="profile-link" href="profile.html">حساب کاربری</a>
-                            </span>
-                        </div>
-                        <div className="col-1">
-                            <span>
-                                <a className="exit-link">خروج</a>
-                            </span>
-                        </div>
+                        {profile}
+                        {exit}
                     </div>
                 </div>
             </div>
@@ -37,4 +55,6 @@ export default class Header extends Component<Props, State> {
 }
 
 interface State {}
-interface Props {}
+interface Props {
+    disable?: boolean
+}

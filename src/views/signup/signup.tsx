@@ -107,7 +107,7 @@ export default class Signup extends Component<Props, State> {
   render() {
       
     return (
-        <Layout>
+        <Layout disableHeader={true}>
             <div className="row colored-row signup-page"></div>        
             <div className="container content signup-page">
                 <h3>ثبت نام</h3>

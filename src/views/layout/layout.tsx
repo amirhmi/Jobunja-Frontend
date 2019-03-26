@@ -9,7 +9,7 @@ export default class Layout extends Component<Props, State> {
   render() {
     return (
       <div>
-        <Header />
+        <Header disable={this.props.disableHeader }/>
         <Main>
           {this.props.children}
         </Main>
@@ -21,4 +21,6 @@ export default class Layout extends Component<Props, State> {
 }
 
 interface State {}
-interface Props {}
+interface Props {
+  disableHeader?: boolean
+}
