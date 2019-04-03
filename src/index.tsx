@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from 'src/views/home/home';
 import Project from 'src/views/project/project';
+import User from 'src/views/user/user'
 import Signup from './views/signup/signup';
 import Login from './views/login/login';
 
@@ -19,6 +20,7 @@ ReactDOM.render(
     <Route exact path="/signup" component={Signup} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/project/:id" component={Project} />
+    <Route exact path="/user/:id" component={User} />
     </Switch>
   </Router>,
   document.getElementById('root')
