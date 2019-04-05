@@ -4,14 +4,13 @@ import JobunjaLogo from '../../../recourse/logo/logo-v1.png'
 import { Link } from 'react-router-dom';
 
 export default class Header extends Component<Props, State> {
-  //TODO: profile link
   render() {
       let logo, profile, exit;
     if(this.props.disable == null || this.props.disable == false) {
         profile = (
             <div className="col-2 offset-8 account-link">
                 <span>
-                    <a className="profile-link" href="profile.html">حساب کاربری</a>
+                    <Link className="profile-link" to="/user/1">حساب کاربری</Link>
                 </span>
             </div>
         );

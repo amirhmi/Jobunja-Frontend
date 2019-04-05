@@ -34,6 +34,12 @@ export default class Project extends Component<Props, State> {
 
   async componentDidMount() {
     let data = await this.getProject();
+    if(data == undefined) {
+      this.setState({
+        loading: true
+      });
+      return;
+    }
     var isFinished = !isTimeRemain(data.deadline);
     this.setState({
       project: data,
@@ -52,6 +58,7 @@ export default class Project extends Component<Props, State> {
         return res.data;
       })
       .catch( (err: any) => {
+        console.log("error")
         ErrorHandlerService("خطا در ارتباط با سرور");
       });
   }
@@ -113,12 +120,16 @@ export default class Project extends Component<Props, State> {
     );
   }
 
+  isNumber = (value: string | number): boolean =>
+  {
+    return ((value != null) && !isNaN(Number(value.toString())));
+  }
+
   handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(event.currentTarget.value.length);
-    console.log(this.state.bidAmount.toString().length);
+    console.log(this.isNumber(event.currentTarget.value));
     if(event.currentTarget.value.length > 0 && 
       event.currentTarget.value.length > this.state.bidAmount.toString().length &&
-      !event.currentTarget.value[event.currentTarget.value.length-1].toString().match(/^-{0,1}\d+$/)) {
+      !this.isNumber(event.currentTarget.value)) {
       WarningHandlerService("پیشنهاد می بایست عدد باشد");
       event.currentTarget.value = this.state.bidAmount.toString();
       return;
@@ -128,7 +139,7 @@ export default class Project extends Component<Props, State> {
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if(!this.state.bidAmount.toString().match(/^-{0,1}\d+$/)) {
+    if(!this.isNumber(this.state.bidAmount)) {
       ErrorHandlerService("پیشنهاد می بایست عدد باشد");
       return;
     }
@@ -212,7 +223,7 @@ export default class Project extends Component<Props, State> {
 
   render() {
     return (
-      this.state.loading ? <div></div> :
+      this.state.loading ? <Layout></Layout> :
       <Layout>
         <div className="row colored-row project-page"></div>        
         <div className="container content project-page">

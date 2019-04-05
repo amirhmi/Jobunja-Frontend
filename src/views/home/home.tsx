@@ -31,7 +31,6 @@ export default class Header extends Component<Props, State> {
            });
          })
          .catch( (err: any) => {
-            ErrorHandlerService("خطا در برقراری ارتباط با سرور");
         });
      }
 

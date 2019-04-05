@@ -52,7 +52,6 @@ export default class User extends Component<Props, State> {
       })
     })
     .catch( (err: any) => {
-      ErrorHandlerService("خطا در اتصال به سرور");
     })
   }
   getAmIEndorser = async () => {
@@ -63,7 +62,6 @@ export default class User extends Component<Props, State> {
       })
     })
     .catch( (err: any) => {
-      ErrorHandlerService("خطا در اتصال به سرور");
     })
   }
   getLoginUserId = async () => {
@@ -74,7 +72,6 @@ export default class User extends Component<Props, State> {
       })
     })
     .catch( (err: any) => {
-      ErrorHandlerService("خطا در اتصال به سرور");
     })
   }
   isMyself = () => { return this.state.userId == this.state.loginUserId}
