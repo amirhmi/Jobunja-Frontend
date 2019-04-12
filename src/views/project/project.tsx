@@ -126,7 +126,6 @@ export default class Project extends Component<Props, State> {
   }
 
   handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(this.isNumber(event.currentTarget.value));
     if(event.currentTarget.value.length > 0 && 
       event.currentTarget.value.length > this.state.bidAmount.toString().length &&
       !this.isNumber(event.currentTarget.value)) {

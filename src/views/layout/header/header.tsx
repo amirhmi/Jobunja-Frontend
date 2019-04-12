@@ -10,7 +10,7 @@ export default class Header extends Component<Props, State> {
         profile = (
             <div className="col-2 offset-8 account-link">
                 <span>
-                    <Link className="profile-link" to="/user/1">حساب کاربری</Link>
+                    <a className="profile-link" href="/user/1">حساب کاربری</a>
                 </span>
             </div>
         );

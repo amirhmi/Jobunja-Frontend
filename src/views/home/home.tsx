@@ -103,8 +103,14 @@ export default class Header extends Component<Props, State> {
     }
     handleSubmitOnProject = (event: any) => {
         event.preventDefault();
+        if(this.state.searchProject == null || this.state.searchProject == undefined || this.state.searchProject == '')
+            ErrorHandlerService("فیلد جستجو خالی می باشد")
     }
-    handleChangeOnProject = (event: any) => {}
+    handleChangeOnProject = (event: any) => {
+        this.setState({
+            searchProject: event.currentTarget.value
+        });
+    }
 
     showUsers = () => {
         if(this.state.users.length > 0) {
@@ -246,6 +252,7 @@ interface State {
     projects: IProject[],
     users: IUser[],
     deadlines: IDeadline[],
+    searchProject?: string
 }
 interface Props {}
 
