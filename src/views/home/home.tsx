@@ -252,6 +252,20 @@ export default class Header extends Component<Props, State> {
 
     }
 
+    onSearchUserChange = async (event: any) => {
+        this.setState({
+            searchUser: event.currentTarget.value
+        })
+        await axios.get(`http://localhost:8080/users?searchKey=` + this.state.searchUser)
+         .then( (res: any) => {
+           this.setState({
+             users: res.data,
+           });
+         })
+         .catch( (err: any) => {
+        });
+    }
+
 
   render() {
     return (
@@ -264,7 +278,7 @@ export default class Header extends Component<Props, State> {
                 <div className="row main-content">
                     <div className="col-3 users">
                         <div className="row">
-                            <input type="text" placeholder="جستجو نام کاربر" />
+                            <input onChange={} type="text" placeholder="جستجو نام کاربر" />
                         </div>
                         {this.showUsers()}
                     </div>
@@ -293,6 +307,7 @@ interface State {
     users: IUser[],
     deadlines: IDeadline[],
     searchProject?: string,
+    searchUser?: string,
     page: number,
     limit: number,
 }
