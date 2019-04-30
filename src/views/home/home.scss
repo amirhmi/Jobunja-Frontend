@@ -288,4 +288,18 @@
         cursor: pointer;
         text-decoration: underline;
     }
+
+    .load-more {
+        display: block;
+        border: 0;
+        border-radius: 2px;
+        margin: 1em auto;
+        padding: 0.75em 2em;
+        font-size: 1em;
+        background-color:  rgb(55, 124, 126);
+        color: #fff;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
 }

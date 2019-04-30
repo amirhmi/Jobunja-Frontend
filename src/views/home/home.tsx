@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ErrorHandlerService } from 'src/core/error-handler-service';
+import { ErrorHandlerService, WarningHandlerService } from 'src/core/error-handler-service';
 import Layout from '../layout/layout';
 import './home.scss'
 import { Link } from 'react-router-dom';
+import { string } from 'prop-types';
 
 export default class Header extends Component<Props, State> {
 
@@ -12,7 +13,9 @@ export default class Header extends Component<Props, State> {
         this.state = {
             users: [],
             projects: [],
-            deadlines: []
+            deadlines: [],
+            page: 1,
+            limit: 10
         }
         this.getUsers();
         this.getProjects();
@@ -35,7 +38,7 @@ export default class Header extends Component<Props, State> {
      }
 
      getProjects = async () => {
-        await axios.get(`http://localhost:8080/projects`)
+        await axios.get('http://localhost:8080/projects/page?page=0&limit=10')
          .then( (res: any) => {
            this.setState({
              projects: res.data,
@@ -101,10 +104,27 @@ export default class Header extends Component<Props, State> {
             </div>
         );
     }
-    handleSubmitOnProject = (event: any) => {
+    handleSubmitOnProject = async (event: any) => {
         event.preventDefault();
-        if(this.state.searchProject == null || this.state.searchProject == undefined || this.state.searchProject == '')
+        if(this.state.searchProject == null || this.state.searchProject == undefined || this.state.searchProject == '') {
             ErrorHandlerService("فیلد جستجو خالی می باشد")
+            return;
+        }
+        await axios.get('http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString() + 'searchKey=' + this.state.searchProject)
+         .then( (res: any) => {
+            if(res.data.length == 0) {
+                WarningHandlerService("پروژه بیشتری وجود ندارد");
+            }
+            this.setState({
+                projects: this.state.projects.concat(res.data)
+            });
+         })
+         .catch( (err: any) => {
+            ErrorHandlerService("خطا در برقراری ارتباط با سرور");
+        });
+        this.setState({
+            page: this.state.page + 1
+        });
     }
     handleChangeOnProject = (event: any) => {
         this.setState({
@@ -213,6 +233,25 @@ export default class Header extends Component<Props, State> {
         });
     }
 
+    loadMore = async () => {
+        await axios.get('http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString())
+         .then( (res: any) => {
+            if(res.data.length == 0) {
+                WarningHandlerService("پروژه بیشتری وجود ندارد");
+            }
+            this.setState({
+                projects: this.state.projects.concat(res.data)
+            });
+         })
+         .catch( (err: any) => {
+            ErrorHandlerService("خطا در برقراری ارتباط با سرور");
+        });
+        this.setState({
+            page: this.state.page + 1
+        });
+
+    }
+
 
   render() {
     return (
@@ -233,6 +272,7 @@ export default class Header extends Component<Props, State> {
                         {this.showProjects()}
                     </div>
                 </div>
+                <button onClick={this.loadMore} type="button" className="load-more">بیشتر</button>
             </div>
         </Layout>
     );
@@ -252,7 +292,9 @@ interface State {
     projects: IProject[],
     users: IUser[],
     deadlines: IDeadline[],
-    searchProject?: string
+    searchProject?: string,
+    page: number,
+    limit: number,
 }
 interface Props {}
 
