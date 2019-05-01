@@ -22,9 +22,9 @@ export default class Header extends Component<Props, State> {
             </div>
         );
         logo = (
-            <Link to="/">
+            <a href="/">
                 <img src={JobunjaLogo} alt="logo" />
-            </Link>
+            </a>
         );
     }
     else {
