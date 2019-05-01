@@ -237,7 +237,7 @@ export default class Header extends Component<Props, State> {
     }
 
     loadMore = async () => {
-        await axios.get('http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString() + '&searchKey=' + this.state.searchProject)
+        await axios.get('http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString())
          .then( (res: any) => {
             if(res.data.length == 0) {
                 WarningHandlerService("پروژه بیشتری وجود ندارد");
