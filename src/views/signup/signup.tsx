@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Layout from '../layout/layout';
 import './signup.scss'
-import { Link } from 'react-router-dom';
-import {NotificationManager} from 'react-notifications';
-import { ErrorHandlerService } from 'src/core/error-handler-service';
-
-//FIXME: change navbar header
+import axios from 'axios';
+import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from 'src/core/error-handler-service';
+import Layout from '../layout/layout';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class Signup extends Component<Props, State> {
 
@@ -24,7 +22,6 @@ export default class Signup extends Component<Props, State> {
     }
 
     handleFirstName= (event: React.FormEvent<HTMLInputElement>) => {
-        console.log("sss");
         this.setState({
             firstname: event.currentTarget.value
         });
@@ -102,6 +99,31 @@ export default class Signup extends Component<Props, State> {
             ErrorHandlerService("لینک عکس خالی می باشد");
             return;
         }
+
+        const params = {
+            firstName: this.state.firstname,
+            lastName: this.state.lastname,
+            userName: this.state.username,
+            password: this.state.password,
+            jobTitle: this.state.jobtitle,
+            imgUrl: this.state.imgurl,
+            bio: this.state.bio,
+          };
+      
+          axios({
+            method: 'post',
+            url: "http://localhost:8080/signup",
+            params: params,
+            headers: {
+            'content-type': 'multipart/form-data',
+            },
+          })
+          .then((response) => {
+            <Redirect to='/login' />
+            SuccessHandlerService("ثبت نام با موفقیت انجام شد");
+          }) .catch(function (error) {
+            ErrorHandlerService("خطا در ثبت نام");      
+          });
     } 
 
   render() {
