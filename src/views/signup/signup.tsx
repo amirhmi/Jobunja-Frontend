@@ -3,7 +3,8 @@ import './signup.scss'
 import axios from 'axios';
 import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from 'src/core/error-handler-service';
 import Layout from '../layout/layout';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router'
 
 export default class Signup extends Component<Props, State> {
 
@@ -17,7 +18,8 @@ export default class Signup extends Component<Props, State> {
             confirmpassword: '',
             jobtitle: '',
             imgurl: '',
-            bio: ''
+            bio: '',
+            fireRedirect: false
         }
     }
 
@@ -119,8 +121,8 @@ export default class Signup extends Component<Props, State> {
             },
           })
           .then((response) => {
-            <Redirect to='/login' />
             SuccessHandlerService("ثبت نام با موفقیت انجام شد");
+            this.setState({ fireRedirect: true })
           }) .catch(function (error) {
             ErrorHandlerService("خطا در ثبت نام");      
           });
@@ -179,6 +181,9 @@ export default class Signup extends Component<Props, State> {
                         </div>
                     </div>
                 </form>
+                {this.state.fireRedirect && (
+                     <Redirect to={'/login'}/>
+                )}
             </div>
         </Layout>
     );
@@ -193,6 +198,7 @@ interface State {
     confirmpassword: string,
     jobtitle: string,
     imgurl: string,
-    bio: string
+    bio: string,
+    fireRedirect: boolean
 }
 interface Props {}
