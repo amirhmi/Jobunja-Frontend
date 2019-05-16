@@ -53,7 +53,6 @@ export default class Project extends Component<Props, State> {
   }
 
   getProject = async () => {
-    console.log('Authorization' + "bearer " + localStorage.getItem("jwt"))
     return axios({
       method: 'get',
       url: `http://localhost:8080/projects/` + this.state.projectId,
@@ -157,13 +156,14 @@ export default class Project extends Component<Props, State> {
     const params = {
       bidAmount: this.state.bidAmount
     };
-
+  
     axios({
       method: 'post',
       url: "http://localhost:8080/projects/" + this.state.projectId + "/bid",
       params: params,
       headers: {
       'content-type': 'multipart/form-data',
+      'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
     })
     .then((response) => {

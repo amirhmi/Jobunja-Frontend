@@ -34,7 +34,13 @@ export default class User extends Component<Props, State> {
     this.getAmIEndorser();
   }
   getUser = async () => {
-    await axios.get(`http://localhost:8080/users/` + this.state.userId)
+    await axios({
+      method: 'get',
+      url: `http://localhost:8080/users/` + this.state.userId,
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+    })
     .then( (res: any) => {
       this.setState({
         user: res.data,
@@ -45,8 +51,13 @@ export default class User extends Component<Props, State> {
     });
   }
   getValidSkills = async () => {
-    await axios.get('http://localhost:8080/skills')
-    .then( (res: any) => {
+    await axios({
+      method: 'get',
+      url: 'http://localhost:8080/skills',
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+    }).then( (res: any) => {
       this.setState({
         validSkills: res.data,
       })
@@ -55,8 +66,13 @@ export default class User extends Component<Props, State> {
     })
   }
   getAmIEndorser = async () => {
-    await axios.get('http://localhost:8080/users/' + this.state.userId + "/amiendorser")
-    .then( (res: any) => {
+    await axios({
+      method: 'get',
+      url: 'http://localhost:8080/users/' + this.state.userId + "/amiendorser",
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+    }).then( (res: any) => {
       this.setState({
         amIEndorser: res.data,
       })
@@ -65,8 +81,13 @@ export default class User extends Component<Props, State> {
     })
   }
   getLoginUserId = async () => {
-    await axios.get('http://localhost:8080/users/myid')
-    .then( (res: any) => {
+    await axios({
+      method: 'get',
+      url: 'http://localhost:8080/users/myid',
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+    }).then( (res: any) => {
       this.setState({
         loginUserId: res.data,
       })
@@ -99,6 +120,7 @@ export default class User extends Component<Props, State> {
       params: params,
       headers: {
       'content-type': 'multipart/form-data',
+      'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
     })
     .then((response) => {
@@ -143,6 +165,7 @@ export default class User extends Component<Props, State> {
       params: params,
       headers: {
       'content-type': 'multipart/form-data',
+      'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
     })
     .then((response) => {
@@ -182,6 +205,7 @@ export default class User extends Component<Props, State> {
       params: params,
       headers: {
       'content-type': 'multipart/form-data',
+      'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
     })
     .then((response) => {
