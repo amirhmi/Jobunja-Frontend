@@ -10,6 +10,12 @@ export default class RemainTime extends Component<Props, State> {
         }
       }
 
+      async componentDidMount() {
+        setInterval(() => this.setState({
+            isFinished: !isTimeRemain(this.state.deadline)
+          }), 1000);
+      }
+
     render() {
         let time
         if(!this.state.isFinished) {

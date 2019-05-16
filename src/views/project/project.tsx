@@ -36,6 +36,17 @@ export default class Project extends Component<Props, State> {
   }
 
   async componentDidMount() {
+    this.updateProject();
+    setInterval(() => this.setState({
+        isFinished: !isTimeRemain(this.state.project.deadline)
+      }), 1000);
+    setInterval(() => {
+      if (this.state.isFinished && this.state.project.winnerId == '' && Date.now() - this.state.project.deadline < 61000)
+        this.updateProject();
+      }, 1000);
+  }
+
+  updateProject = async () => {
     let data = await this.getProject();
     if(data == undefined) {
       this.setState({
@@ -49,10 +60,6 @@ export default class Project extends Component<Props, State> {
       isFinished: isFinished,
       loading: false
     });
-    setInterval(() => this.setState({
-        isFinished: !isTimeRemain(this.state.project.deadline)
-      }), 1000);
-    
   }
 
   getProject = async () => {
