@@ -24,11 +24,11 @@ export default class Project extends Component<Props, State> {
         title: '',
         winnerId: '',
         winnerName: '',
-        alreadyBid: false
+        alreadyBid: false,
       },
       isFinished: true,
       bidAmount: 0,
-      loading: true
+      loading: true,
     }
   }
 
@@ -259,7 +259,7 @@ interface State {
   projectId: string,
   isFinished: boolean,
   bidAmount: number,
-  loading: boolean
+  loading: boolean,
 }
 interface Skill {
   name: string;

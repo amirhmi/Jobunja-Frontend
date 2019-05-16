@@ -4,6 +4,11 @@ import JobunjaLogo from '../../../recourse/logo/logo-v1.png'
 import { Link } from 'react-router-dom';
 
 export default class Header extends Component<Props, State> {
+
+  clickExit = () => {
+    localStorage.removeItem("jwt");
+  }
+
   render() {
       let logo, profile, exit;
     if(this.props.disable == null || this.props.disable == false) {
@@ -17,7 +22,7 @@ export default class Header extends Component<Props, State> {
         exit = (
             <div className="col-1">
                 <span>
-                    <a className="exit-link">خروج</a>
+                    <a className="exit-link" href="/login" onClick={this.clickExit}>خروج</a>
                 </span>
             </div>
         );

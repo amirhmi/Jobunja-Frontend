@@ -3,7 +3,7 @@ import '../../recourse/icons/font2/flaticon.css'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import './login.scss'
 import JobunjaLogo from '../../recourse/logo/logo-v1.png'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { SuccessHandlerService, ErrorHandlerService } from 'src/core/error-handler-service';
 
@@ -13,6 +13,7 @@ export default class Login extends Component<Props, State> {
         this.state = {
             username: '',
             password: '',
+            fireRedirect: false
         }
     }
 
@@ -54,6 +55,9 @@ export default class Login extends Component<Props, State> {
           })
           .then((response) => {
             localStorage.setItem("jwt", response.data);
+            this.setState({
+                fireRedirect: true
+            })
           }) .catch(function (error) {
             ErrorHandlerService("نام کاربری یا رمز عبور اشتباه است");      
           });
@@ -85,6 +89,9 @@ export default class Login extends Component<Props, State> {
                     </div>
                 </div>
             </div>
+            {this.state.fireRedirect && (
+                     <Redirect to={'/'}/>
+            )}
             <NotificationContainer/>
         </div>
     )
@@ -95,5 +102,6 @@ export default class Login extends Component<Props, State> {
 interface Props {}
 interface State {
     username: string,
-    password: string
+    password: string,
+    fireRedirect: boolean
 }

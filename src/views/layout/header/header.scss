@@ -20,3 +20,13 @@ header {
 .navbar-header .account-link a {
     text-align: center;
 }
+
+a.exit-link:link {
+    text-decoration: inherit;
+    color: inherit;
+  }
+  
+a.exit-link:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
