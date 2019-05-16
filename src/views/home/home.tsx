@@ -27,9 +27,13 @@ export default class Header extends Component<Props, State> {
       }
 
     getUsers = async () => {
-
-        await axios.get(`http://localhost:8080/users`)
-         .then( (res: any) => {
+        await axios({
+            method: 'get',
+            url: `http://localhost:8080/users`,
+            headers: {
+            'Authorization': "Bearer " + localStorage.getItem("jwt")
+            },
+          }).then( (res: any) => {
            this.setState({
              users: res.data,
            });
@@ -39,9 +43,14 @@ export default class Header extends Component<Props, State> {
      }
 
      getProjects = async () => {
-    
-        await axios.get('http://localhost:8080/projects/page?page=0&limit=5')
-         .then( (res: any) => {
+        
+        await axios({
+            method: 'get',
+            url: 'http://localhost:8080/projects/page?page=0&limit=5',
+            headers: {
+            'Authorization': "Bearer " + localStorage.getItem("jwt")
+            },
+          }).then( (res: any) => {
            this.setState({
              projects: res.data,
            });
@@ -112,8 +121,13 @@ export default class Header extends Component<Props, State> {
             ErrorHandlerService("فیلد جستجو خالی می باشد")
             return;
         }
-        await axios.get('http://localhost:8080/projects/page?page=0' + '&limit=' + this.state.limit.toString() + '&searchKey=' + this.state.searchProject)
-         .then( (res: any) => {
+        await axios({
+            method: 'get',
+            url: 'http://localhost:8080/projects/page?page=0' + '&limit=' + this.state.limit.toString() + '&searchKey=' + this.state.searchProject,
+            headers: {
+            'Authorization': "Bearer " + localStorage.getItem("jwt")
+            },
+          }).then( (res: any) => {
             if(res.data.length == 0) {
                 WarningHandlerService("پروژه ای یافت نشد");
             }
@@ -242,8 +256,14 @@ export default class Header extends Component<Props, State> {
         let searchKey = '';
         if(this.state.searchProject != undefined && this.state.searchProject != null && this.state.searchProject != '')
             searchKey = '&searchKey=' + this.state.searchProject;
-        await axios.get('http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString() + searchKey)
-         .then( (res: any) => {
+        
+        await axios({
+            method: 'get',
+            url: 'http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString() + searchKey,
+            headers: {
+            'Authorization': "Bearer " + localStorage.getItem("jwt")
+            },
+        }).then( (res: any) => {
             if(res.data.length == 0) {
                 WarningHandlerService("پروژه بیشتری وجود ندارد");
             }
@@ -261,8 +281,13 @@ export default class Header extends Component<Props, State> {
     }
 
     onSearchUserChange = async (event: any) => {
-        await axios.get(`http://localhost:8080/users?searchKey=` + event.currentTarget.value)
-         .then( (res: any) => {
+        await axios({
+            method: 'get',
+            url: `http://localhost:8080/users?searchKey=` + event.currentTarget.value,
+            headers: {
+            'Authorization': "Bearer " + localStorage.getItem("jwt")
+            },
+        }).then( (res: any) => {
            this.setState({
              users: res.data,
            });
