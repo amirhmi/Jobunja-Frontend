@@ -11,11 +11,12 @@ export default class Header extends Component<Props, State> {
 
   render() {
       let logo, profile, exit;
+      let userId = localStorage.getItem("userId")
     if(this.props.disable == null || this.props.disable == false) {
         profile = (
             <div className="col-2 offset-8 account-link">
                 <span>
-                    <a className="profile-link" href="/user/1">حساب کاربری</a>
+                    <a className="profile-link" href={"/user/" + userId}>حساب کاربری</a>
                 </span>
             </div>
         );
