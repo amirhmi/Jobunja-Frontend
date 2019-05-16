@@ -15,7 +15,7 @@ export default class Header extends Component<Props, State> {
             projects: [],
             deadlines: [],
             page: 1,
-            limit: 10
+            limit: 5
         }
         this.getUsers();
         this.getProjects();
@@ -27,6 +27,7 @@ export default class Header extends Component<Props, State> {
       }
 
     getUsers = async () => {
+
         await axios.get(`http://localhost:8080/users`)
          .then( (res: any) => {
            this.setState({
@@ -38,7 +39,8 @@ export default class Header extends Component<Props, State> {
      }
 
      getProjects = async () => {
-        await axios.get('http://localhost:8080/projects/page?page=0&limit=10')
+    
+        await axios.get('http://localhost:8080/projects/page?page=0&limit=5')
          .then( (res: any) => {
            this.setState({
              projects: res.data,

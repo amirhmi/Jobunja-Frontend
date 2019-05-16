@@ -149,10 +149,10 @@ export default class Signup extends Component<Props, State> {
                                     <input type="text" className="form-control" placeholder="نام کاربری" onChange={this.handleUserName}/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="رمز عبور" onChange={this.handlePassword}/>
+                                    <input type="password" className="form-control" placeholder="رمز عبور" onChange={this.handlePassword}/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="تکرار رمز عبور" onChange={this.handleConfirmPassword}/>
+                                    <input type="password" className="form-control" placeholder="تکرار رمز عبور" onChange={this.handleConfirmPassword}/>
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control" placeholder="عنوان شغلی" onChange={this.handleJobTitle}/>

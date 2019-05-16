@@ -53,12 +53,18 @@ export default class Project extends Component<Props, State> {
   }
 
   getProject = async () => {
-     return await axios.get(`http://localhost:8080/projects/` + this.state.projectId)
-      .then( (res: any) => {
+    console.log('Authorization' + "bearer " + localStorage.getItem("jwt"))
+    return axios({
+      method: 'get',
+      url: `http://localhost:8080/projects/` + this.state.projectId,
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+    }).then( (res: any) => {
         return res.data;
       })
       .catch( (err: any) => {
-        console.log("error")
+        console.log(err)
         ErrorHandlerService("خطا در ارتباط با سرور");
       });
   }

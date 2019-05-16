@@ -4,6 +4,8 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import './login.scss'
 import JobunjaLogo from '../../recourse/logo/logo-v1.png'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { SuccessHandlerService, ErrorHandlerService } from 'src/core/error-handler-service';
 
 export default class Login extends Component<Props, State> {
     constructor(props: Props) {
@@ -32,10 +34,29 @@ export default class Login extends Component<Props, State> {
             NotificationManager.error("نام کاربری خالی می باشد");
             return;
         }
-        else if(this.state.password.length < 6) {
-            NotificationManager.error("رمز عبور اشتباه می باشد");
+        else if(this.state.password == '') {
+            NotificationManager.error("رمز عبور خالی می باشد");
             return;
         }
+
+        const params = {
+            userName: this.state.username,
+            password: this.state.password,
+          };
+      
+          axios({
+            method: 'post',
+            url: "http://localhost:8080/login",
+            params: params,
+            headers: {
+            'content-type': 'multipart/form-data',
+            },
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data);
+          }) .catch(function (error) {
+            ErrorHandlerService("نام کاربری یا رمز عبور اشتباه است");      
+          });
     } 
   render() {
     return (
