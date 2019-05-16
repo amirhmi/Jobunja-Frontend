@@ -28,6 +28,9 @@ export default class User extends Component<Props, State> {
       loginUserId: '',
       selectedAddableSkill: '--انتخاب مهارت--',
     }
+    if(localStorage.getItem("jwt") == null) {
+      window.location.href = '/login';            
+    }
     this.getUser();
     this.getLoginUserId();
     this.getValidSkills();

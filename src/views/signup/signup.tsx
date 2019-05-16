@@ -21,6 +21,9 @@ export default class Signup extends Component<Props, State> {
             bio: '',
             fireRedirect: false
         }
+        if(localStorage.getItem("jwt") != null) {
+            window.location.href = '/';            
+          }
     }
 
     handleFirstName= (event: React.FormEvent<HTMLInputElement>) => {

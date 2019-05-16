@@ -30,6 +30,9 @@ export default class Project extends Component<Props, State> {
       bidAmount: 0,
       loading: true,
     }
+    if(localStorage.getItem("jwt") == null) {
+      window.location.href = '/login';            
+    }
   }
 
   async componentDidMount() {

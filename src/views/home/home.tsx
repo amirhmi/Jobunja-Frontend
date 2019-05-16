@@ -4,7 +4,6 @@ import { ErrorHandlerService, WarningHandlerService } from 'src/core/error-handl
 import Layout from '../layout/layout';
 import './home.scss'
 import { Link } from 'react-router-dom';
-import { string } from 'prop-types';
 
 export default class Header extends Component<Props, State> {
 
@@ -16,6 +15,10 @@ export default class Header extends Component<Props, State> {
             deadlines: [],
             page: 1,
             limit: 5
+        }
+        console.log(localStorage.getItem("jwt"))
+        if(localStorage.getItem("jwt") == null) {
+            window.location.href = '/login';            
         }
         this.getUsers();
         this.getProjects();

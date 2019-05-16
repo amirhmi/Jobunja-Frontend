@@ -15,6 +15,9 @@ export default class Login extends Component<Props, State> {
             password: '',
             fireRedirect: false
         }
+        if(localStorage.getItem("jwt") != null) {
+            window.location.href = '/';            
+        }
     }
 
     handleUserName= (event: React.FormEvent<HTMLInputElement>) => {
