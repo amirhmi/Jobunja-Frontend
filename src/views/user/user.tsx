@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from 'src/core/error-handler-service';
-import Layout from 'src/views/layout/layout'
-import MySkill from 'src/views/user/skills/mySkills'
-import OthersSkill from 'src/views/user/skills/othersSkills'
+import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from '../../core/error-handler-service';
+import Layout from '../layout/layout'
+import MySkill from '../user/skills/mySkills'
+import OthersSkill from '../user/skills/othersSkills'
 import './user.scss';
-import OthersSkills from 'src/views/user/skills/othersSkills';
 
 export default class User extends Component<Props, State> {
   constructor (props: Props)
@@ -39,7 +38,7 @@ export default class User extends Component<Props, State> {
   getUser = async () => {
     await axios({
       method: 'get',
-      url: `http://localhost:8080/users/` + this.state.userId,
+      url: localStorage.getItem("homepage") + '/users/' + this.state.userId,
       headers: {
         'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
@@ -56,7 +55,7 @@ export default class User extends Component<Props, State> {
   getValidSkills = async () => {
     await axios({
       method: 'get',
-      url: 'http://localhost:8080/skills',
+      url: localStorage.getItem("homepage") + '/skills',
       headers: {
         'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
@@ -71,7 +70,7 @@ export default class User extends Component<Props, State> {
   getAmIEndorser = async () => {
     await axios({
       method: 'get',
-      url: 'http://localhost:8080/users/' + this.state.userId + "/amiendorser",
+      url: localStorage.getItem("homepage") + '/users/' + this.state.userId + "/amiendorser",
       headers: {
         'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
@@ -86,7 +85,7 @@ export default class User extends Component<Props, State> {
   getLoginUserId = async () => {
     await axios({
       method: 'get',
-      url: 'http://localhost:8080/users/myid',
+      url: localStorage.getItem("homepage") + '/users/myid',
       headers: {
         'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
@@ -119,7 +118,7 @@ export default class User extends Component<Props, State> {
 
     axios({
       method: 'put',
-      url: "http://localhost:8080/skills/",
+      url: localStorage.getItem("homepage") + "/skills/",
       params: params,
       headers: {
       'content-type': 'multipart/form-data',
@@ -164,7 +163,7 @@ export default class User extends Component<Props, State> {
 
     axios({
       method: 'delete',
-      url: "http://localhost:8080/skills/",
+      url: localStorage.getItem("homepage") + "/skills/",
       params: params,
       headers: {
       'content-type': 'multipart/form-data',
@@ -204,7 +203,7 @@ export default class User extends Component<Props, State> {
 
     axios({
       method: 'put',
-      url: "http://localhost:8080/users/" + this.state.userId + "/endorse",
+      url: localStorage.getItem("homepage") + "/users/" + this.state.userId + "/endorse",
       params: params,
       headers: {
       'content-type': 'multipart/form-data',

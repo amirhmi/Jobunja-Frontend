@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ErrorHandlerService, WarningHandlerService } from 'src/core/error-handler-service';
+import { ErrorHandlerService, WarningHandlerService } from '../../core/error-handler-service';
 import Layout from '../layout/layout';
 import './home.scss'
 import { Link } from 'react-router-dom';
@@ -32,7 +32,7 @@ export default class Header extends Component<Props, State> {
     getUsers = async () => {
         await axios({
             method: 'get',
-            url: `http://localhost:8080/users`,
+            url: localStorage.getItem("homepage") + '/users',
             headers: {
             'Authorization': "Bearer " + localStorage.getItem("jwt")
             },
@@ -49,7 +49,7 @@ export default class Header extends Component<Props, State> {
         
         await axios({
             method: 'get',
-            url: 'http://localhost:8080/projects/page?page=0&limit=5',
+            url: localStorage.getItem("homepage") + '/projects/page?page=0&limit=5',
             headers: {
             'Authorization': "Bearer " + localStorage.getItem("jwt")
             },
@@ -126,7 +126,7 @@ export default class Header extends Component<Props, State> {
         }
         await axios({
             method: 'get',
-            url: 'http://localhost:8080/projects/page?page=0' + '&limit=' + this.state.limit.toString() + '&searchKey=' + this.state.searchProject,
+            url: localStorage.getItem("homepage") + '/projects/page?page=0' + '&limit=' + this.state.limit.toString() + '&searchKey=' + this.state.searchProject,
             headers: {
             'Authorization': "Bearer " + localStorage.getItem("jwt")
             },
@@ -262,7 +262,7 @@ export default class Header extends Component<Props, State> {
         
         await axios({
             method: 'get',
-            url: 'http://localhost:8080/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString() + searchKey,
+            url: localStorage.getItem("homepage") + '/projects/page?page=' + this.state.page.toString() + '&limit=' + this.state.limit.toString() + searchKey,
             headers: {
             'Authorization': "Bearer " + localStorage.getItem("jwt")
             },
@@ -286,7 +286,7 @@ export default class Header extends Component<Props, State> {
     onSearchUserChange = async (event: any) => {
         await axios({
             method: 'get',
-            url: `http://localhost:8080/users?searchKey=` + event.currentTarget.value,
+            url: localStorage.getItem("homepage") + '/users?searchKey=' + event.currentTarget.value,
             headers: {
             'Authorization': "Bearer " + localStorage.getItem("jwt")
             },

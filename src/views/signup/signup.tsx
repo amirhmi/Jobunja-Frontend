@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './signup.scss'
 import axios from 'axios';
-import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from 'src/core/error-handler-service';
+import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from '../../core/error-handler-service';
 import Layout from '../layout/layout';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
@@ -117,7 +117,7 @@ export default class Signup extends Component<Props, State> {
       
           axios({
             method: 'post',
-            url: "http://localhost:8080/signup",
+            url: localStorage.getItem("homepage") + "/signup",
             params: params,
             headers: {
             'content-type': 'multipart/form-data',

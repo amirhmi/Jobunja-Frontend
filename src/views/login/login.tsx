@@ -5,7 +5,7 @@ import './login.scss'
 import JobunjaLogo from '../../recourse/logo/logo-v1.png'
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import { SuccessHandlerService, ErrorHandlerService } from 'src/core/error-handler-service';
+import { SuccessHandlerService, ErrorHandlerService } from '../../core/error-handler-service';
 
 export default class Login extends Component<Props, State> {
     constructor(props: Props) {
@@ -50,7 +50,7 @@ export default class Login extends Component<Props, State> {
       
           axios({
             method: 'post',
-            url: "http://localhost:8080/login",
+            url: localStorage.getItem("homepage") + "/login",
             params: params,
             headers: {
             'content-type': 'multipart/form-data',

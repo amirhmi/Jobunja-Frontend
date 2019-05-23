@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from 'src/core/error-handler-service';
+import { ErrorHandlerService, WarningHandlerService, SuccessHandlerService } from '../../core/error-handler-service';
 import '../../recourse/icons/font/flaticon.css'
-import Layout from 'src/views/layout/layout'
+import Layout from '../layout/layout'
 import RemainTime, { isTimeRemain } from './remain-time/RemainTime'
 import NeededSkill from './skills/skills'
 import './project.scss';
@@ -65,7 +65,7 @@ export default class Project extends Component<Props, State> {
   getProject = async () => {
     return axios({
       method: 'get',
-      url: `http://localhost:8080/projects/` + this.state.projectId,
+      url: localStorage.getItem("homepage") + '/projects/' + this.state.projectId,
       headers: {
         'Authorization': "Bearer " + localStorage.getItem("jwt")
       },
@@ -169,7 +169,7 @@ export default class Project extends Component<Props, State> {
   
     axios({
       method: 'post',
-      url: "http://localhost:8080/projects/" + this.state.projectId + "/bid",
+      url: localStorage.getItem("homepage") + "/projects/" + this.state.projectId + "/bid",
       params: params,
       headers: {
       'content-type': 'multipart/form-data',

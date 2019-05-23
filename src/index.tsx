@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap-with-rtl/dist/css/bootstrap.rtl.css';
 import 'react-notifications/lib/notifications.css';
-import 'src/views/layout/layout.scss'
+import './views/layout/layout.scss'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Home from 'src/views/home/home';
-import Project from 'src/views/project/project';
-import User from 'src/views/user/user'
+import Home from './views/home/home';
+import Project from './views/project/project';
+import User from './views/user/user'
 import Signup from './views/signup/signup';
 import Login from './views/login/login';
+
+localStorage.setItem("homepage", "http://localhost:8080/jobunja-1.0-SNAPSHOT");
 
 ReactDOM.render(
   <Router>
