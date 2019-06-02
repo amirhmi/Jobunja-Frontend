@@ -12,7 +12,7 @@ import User from './views/user/user'
 import Signup from './views/signup/signup';
 import Login from './views/login/login';
 
-localStorage.setItem("homepage", "http://api:8080/jobunja-1.0-SNAPSHOT");
+localStorage.setItem("homepage", "http://185.166.107.141:30038/jobunja-1.0-SNAPSHOT");
 
 ReactDOM.render(
   <Router>
